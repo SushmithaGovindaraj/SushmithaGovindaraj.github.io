@@ -19,7 +19,8 @@ const typingText = document.getElementById('typingText');
 const texts = [
     'Sushmitha Govindaraj',
     'Robotics Engineer',
-    'AI & Automation Specialist',
+    'AI & GenAI Developer',
+    'Automation Specialist',
     'Sushmitha Govindaraj'
 ];
 
@@ -88,7 +89,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe all cards and sections
-document.querySelectorAll('.experience-card, .project-card, .skill-category').forEach(el => {
+document.querySelectorAll('.experience-card, .project-card, .skill-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
