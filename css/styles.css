@@ -592,7 +592,8 @@ body:not([data-theme="light"]) .moon-icon {
 }
 
 .position li::before {
-    content: '▹';
+    content: '•';
+    /* Simple dot instead of arrow */
     position: absolute;
     left: 0;
     color: var(--primary-color);
@@ -600,10 +601,31 @@ body:not([data-theme="light"]) .moon-icon {
 }
 
 .position-divider {
-    text-align: center;
-    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+    gap: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.position-divider::before,
+.position-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-color), transparent);
+}
+
+.position-divider span {
+    background: rgba(var(--primary-glow-rgb), 0.1);
+    padding: 0.2rem 1rem;
+    border-radius: 20px;
     color: var(--primary-color);
-    margin: 1rem 0;
 }
 
 /* Projects Section */
@@ -638,8 +660,12 @@ body:not([data-theme="light"]) .moon-icon {
 
 .project-image {
     width: 100%;
-    height: 250px;
-    object-fit: cover;
+    height: 320px;
+    object-fit: contain;
+    /* Show the full image */
+    background: rgba(0, 0, 0, 0.4);
+    /* Subtle background for transparency or odd aspects */
+    display: block;
 }
 
 .project-content {
