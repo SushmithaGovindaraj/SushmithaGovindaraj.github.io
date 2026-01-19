@@ -182,14 +182,14 @@ body:not([data-theme="light"]) .moon-icon {
 }
 
 .profile-image {
-    width: 200px;
-    height: 200px;
+    width: 280px;
+    height: 280px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 2rem;
-    border: 5px solid var(--primary-color);
-    box-shadow: var(--shadow-lg);
-    animation: float 3s ease-in-out infinite;
+    margin-bottom: 3rem;
+    border: 8px solid var(--primary-color);
+    box-shadow: 0 0 50px var(--primary-glow);
+    animation: float 4s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -448,51 +448,45 @@ body:not([data-theme="light"]) .moon-icon {
 
 .education-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 4rem;
-    margin-top: 5rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
     justify-content: center;
-    /* Center uneven items */
 }
 
 .education-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     backdrop-filter: blur(12px);
-    padding: 3rem;
+    padding: 2.5rem;
     border-radius: 32px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     text-align: center;
-}
-
-.education-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--primary-color);
-    box-shadow: 0 20px 40px -20px var(--primary-glow);
-}
-
-.education-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-    border-radius: 16px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    color: white;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.education-icon svg {
-    width: 32px;
-    height: 32px;
+.edu-header {
+    margin-bottom: 1.5rem;
+}
+
+.edu-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: 0 auto 1.5rem;
+    border-radius: 12px;
+    background: white;
+    padding: 5px;
 }
 
 .education-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 0.5rem;
+    color: var(--text-color);
 }
 
 .school {
