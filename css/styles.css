@@ -90,6 +90,8 @@ section:nth-of-type(even) {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
+    white-space: nowrap;
+    margin-right: 1rem;
 }
 
 .nav-links {
@@ -671,9 +673,16 @@ body:not([data-theme="light"]) .moon-icon {
 /* Publications Section */
 .publications-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    max-width: 800px;
-    margin: 4rem auto 0;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
+    justify-content: center;
+}
+
+@media (max-width: 900px) {
+    .publications-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .publication-card {
@@ -683,9 +692,16 @@ body:not([data-theme="light"]) .moon-icon {
     padding: 2.5rem;
     border-radius: 32px;
     display: flex;
-    gap: 2rem;
-    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
     transition: all 0.4s ease;
+}
+
+@media (min-width: 1000px) {
+    .publication-card {
+        flex-direction: row;
+        align-items: center;
+    }
 }
 
 .publication-card:hover {
