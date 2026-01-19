@@ -668,6 +668,108 @@ body:not([data-theme="light"]) .moon-icon {
     font-weight: 500;
 }
 
+/* Publications Section */
+.publications-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    margin: 4rem auto 0;
+}
+
+.publication-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(12px);
+    padding: 2.5rem;
+    border-radius: 32px;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    transition: all 0.4s ease;
+}
+
+.publication-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 20px 40px -20px var(--primary-glow);
+}
+
+.pub-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.pub-meta {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.btn-text {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* Certifications Section */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.cert-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(12px);
+    padding: 2rem;
+    border-radius: 24px;
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.cert-card:hover {
+    transform: scale(1.02);
+    border-color: var(--accent-color);
+}
+
+.cert-header {
+    margin-bottom: 1rem;
+}
+
+.cert-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(6, 182, 212, 0.1);
+    color: var(--accent-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.cert-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.cert-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
 /* Contact Section */
 .contact {
     padding: 6rem 0;
