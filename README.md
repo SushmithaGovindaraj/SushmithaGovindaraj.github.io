@@ -4,12 +4,12 @@ A modern, responsive portfolio website showcasing my work as a Robotics Engineer
 
 ## 🚀 Live Demo
 
-Visit the live portfolio: 
+Visit the live portfolio: [sushmithagovindaraj.github.io](https://sushmithagovindaraj.github.io/)
 
 ## ✨ Features
 
 - **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
-- **Dark/Light Mode**: Toggle between themes with a single click
+- **Dark/Light Mode**: Toggle between themes with a single click (Defaults to Dark Mode)
 - **Smooth Animations**: Typing effects, scroll animations, and hover interactions
 - **Modern UI**: Clean, professional design with gradient accents
 - **SEO Optimized**: Proper meta tags and semantic HTML structure
@@ -59,12 +59,12 @@ portfolio-website/
 
 1. Clone the repository:
 ```bash
-git clone 
+git clone https://github.com/SushmithaGovindaraj/SushmithaGovindaraj.github.io.git
 ```
 
 2. Navigate to the project directory:
 ```bash
-cd portfolio-website
+cd SushmithaGovindaraj.github.io
 ```
 
 3. Open `index.html` in your browser:
@@ -78,11 +78,7 @@ start index.html
 
 ### Deployment
 
-This website can be deployed on:
-- **GitHub Pages**: Enable in repository settings
-- **Netlify**: Drag and drop the folder
-- **Vercel**: Connect your GitHub repository
-- Any static hosting service
+This website is hosted on **GitHub Pages**.
 
 ## 📱 Contact
 
