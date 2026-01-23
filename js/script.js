@@ -18,9 +18,8 @@ themeToggle.addEventListener('click', () => {
 const typingText = document.getElementById('typingText');
 const texts = [
     'Sushmitha Govindaraj',
-    'Robotics Engineer',
-    'AI & GenAI Developer',
-    'Automation Specialist',
+    'Hello!',
+    'Welcome',
     'Sushmitha Govindaraj'
 ];
 
