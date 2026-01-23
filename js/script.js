@@ -17,9 +17,7 @@ themeToggle.addEventListener('click', () => {
 // Typing Animation
 const typingText = document.getElementById('typingText');
 const texts = [
-    'Sushmitha Govindaraj',
-    'Hello!',
-    'Welcome',
+    'Hey there 👋 I\'m',
     'Sushmitha Govindaraj'
 ];
 
