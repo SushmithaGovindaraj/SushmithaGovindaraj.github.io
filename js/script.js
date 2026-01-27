@@ -2,32 +2,38 @@
 const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
 
-// Check for saved theme preference or default to 'dark'
 const currentTheme = localStorage.getItem('theme') || 'dark';
 html.setAttribute('data-theme', currentTheme);
 
 themeToggle.addEventListener('click', () => {
     const theme = html.getAttribute('data-theme');
     const newTheme = theme === 'light' ? 'dark' : 'light';
-
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
+});
+
+// Navbar Scroll Effect
+const navbar = document.querySelector('.navbar');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
 });
 
 // Typing Animation
 const typingText = document.getElementById('typingText');
 const texts = [
-    'Hey there 👋 I\'m',
     'Sushmitha Govindaraj'
 ];
 
-let textIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
 let typingSpeed = 100;
 
 function type() {
-    const currentText = texts[textIndex];
+    const currentText = texts[0];
 
     if (isDeleting) {
         typingText.textContent = currentText.substring(0, charIndex - 1);
@@ -40,28 +46,25 @@ function type() {
     }
 
     if (!isDeleting && charIndex === currentText.length) {
-        // Pause at end
-        typingSpeed = 2000;
-        isDeleting = true;
+        typingSpeed = 3000;
+        // isDeleting = true; // Stay on name
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
-        textIndex = (textIndex + 1) % texts.length;
         typingSpeed = 500;
     }
 
     setTimeout(type, typingSpeed);
 }
 
-// Start typing animation
 setTimeout(type, 1000);
 
-// Smooth scroll for navigation links
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+            const offsetTop = target.offsetTop - 80;
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
@@ -70,26 +73,24 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for fade-in animations
+// Intersection Observer for staggered animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            // Add a small delay based on index for staggered effect
+            setTimeout(() => {
+                entry.target.classList.add('visible');
+            }, index * 100);
         }
     });
 }, observerOptions);
 
-// Observe all cards and sections
-document.querySelectorAll('.experience-card, .project-card, .skill-card, .education-card, .publication-card, .cert-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+document.querySelectorAll('.skill-card, .education-card, .experience-card, .project-card, .publication-card, .cert-card').forEach(el => {
     observer.observe(el);
 });
 
@@ -98,34 +99,114 @@ const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 
 function updateActiveLink() {
-    const scrollPosition = window.scrollY + 100;
-
+    let current = '';
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
+        if (pageYOffset >= sectionTop - 120) {
+            current = section.getAttribute('id');
+        }
+    });
 
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
-                link.style.color = 'var(--text-color)';
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.style.color = 'var(--primary-color)';
-                }
-            });
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
         }
     });
 }
 
 window.addEventListener('scroll', updateActiveLink);
 
-// Add parallax effect to hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero-content');
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        hero.style.opacity = 1 - (scrolled / 500);
+console.log('Portfolio enhanced! 🚀');
+
+// Particle System for Hero
+const canvas = document.getElementById('hero-particles');
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function initCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     }
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 0.1;
+            this.speedX = Math.random() * 0.5 - 0.25;
+            this.speedY = Math.random() * 0.5 - 0.25;
+            this.color = Math.random() > 0.5 ? '#7c3aed' : '#2dd4bf';
+            this.opacity = Math.random() * 0.5 + 0.2;
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.x < 0) this.x = canvas.width;
+            if (this.y > canvas.height) this.y = 0;
+            if (this.y < 0) this.y = canvas.height;
+        }
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.globalAlpha = this.opacity;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function createParticles() {
+        particles = [];
+        const count = Math.floor((canvas.width * canvas.height) / 10000);
+        for (let i = 0; i < count; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animateParticles);
+    }
+
+    initCanvas();
+    createParticles();
+    animateParticles();
+    window.addEventListener('resize', () => {
+        initCanvas();
+        createParticles();
+    });
+}
+
+// Interactive Skill Cards (Tilt & Mouse Glow)
+document.querySelectorAll('.skill-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Update glow position
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+
+        // Calculate tilt
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (centerY - y) / 20;
+        const rotateY = (x - centerX) / 20;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    });
 });
 
-console.log('Portfolio loaded successfully! 🚀');
+console.log('Portfolio advanced effects loaded! 🚀');
