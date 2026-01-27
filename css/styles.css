@@ -107,12 +107,114 @@
 }
 
 [data-theme="light"] {
-    --bg-color: #f1f5f9;
+    --bg-color: #ffffff;
     --text-color: #0f172a;
-    --text-secondary: #64748b;
-    --card-bg: rgba(255, 255, 255, 0.7);
-    --card-border: rgba(0, 0, 0, 0.08);
-    --glass-bg: rgba(241, 245, 249, 0.9);
+    --text-secondary: #475569;
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --card-border: rgba(0, 0, 0, 0.06);
+    --glass-bg: rgba(255, 255, 255, 0.9);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    --primary-glow: rgba(124, 58, 237, 0.15);
+}
+
+[data-theme="light"] .hero {
+    background: radial-gradient(circle at 50% 50%, #f8fafc 0%, #f1f5f9 100%);
+}
+
+[data-theme="light"] .hero-title {
+    filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.1));
+}
+
+[data-theme="light"] .skill-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .skill-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 25px 50px -12px rgba(124, 58, 237, 0.15);
+}
+
+[data-theme="light"] .skill-tags span {
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .skill-icon {
+    background: rgba(124, 58, 237, 0.05);
+}
+
+[data-theme="light"] .profile-image {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .social-link {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .education-card,
+[data-theme="light"] .experience-card,
+[data-theme="light"] .project-card,
+[data-theme="light"] .cert-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .education-card:hover,
+[data-theme="light"] .experience-card:hover,
+[data-theme="light"] .project-card:hover,
+[data-theme="light"] .cert-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .tag {
+    background: rgba(124, 58, 237, 0.05);
+    color: var(--primary-color);
+}
+
+[data-theme="light"] section:nth-of-type(even) {
+    background-color: #f8fafc;
+}
+
+[data-theme="light"] .contact {
+    background: radial-gradient(circle at 50% 100%, rgba(124, 58, 237, 0.03), transparent 70%);
+}
+
+[data-theme="light"] .nav-brand {
+    background: linear-gradient(135deg, var(--text-color), var(--primary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+[data-theme="light"] .nav-links a.active {
+    color: var(--primary-color);
+}
+
+[data-theme="light"] .navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .btn-secondary {
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--text-color);
+}
+
+[data-theme="light"] .project-content h3 {
+    color: var(--text-color);
+}
+
+[data-theme="light"] .footer {
+    background: #f8fafc;
 }
 
 body {
