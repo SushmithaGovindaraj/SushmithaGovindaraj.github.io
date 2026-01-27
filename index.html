@@ -8,7 +8,9 @@
     <meta name="description"
         content="Portfolio of Sushmitha Govindaraj, a Robotics Engineer specializing in AI-powered solutions, autonomous systems, and intelligent automation">
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -35,11 +37,14 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <canvas id="hero-particles"></canvas>
         <div class="container">
             <div class="hero-content">
+                <div class="bg-blur" style="top: -10%; left: -10%;"></div>
+                <div class="bg-blur" style="bottom: -10%; right: -10%; animation-delay: -5s;"></div>
                 <img src="assets/headshot.jpg" alt="Sushmitha Govindaraj" class="profile-image">
                 <h1 class="hero-title">
-                    <span class="typing-text" id="typingText"></span>
+                    <span id="typingText"></span>
                 </h1>
                 <p class="hero-subtitle">
                     Robotics and AI Engineer passionate about autonomous systems and intelligent automation
@@ -57,9 +62,10 @@
 
     <!-- About Section -->
     <section id="about" class="about">
+        <div class="bg-blur" style="top: 20%; right: 5%; opacity: 0.3;"></div>
         <div class="container">
             <div class="about-content">
-                <h2 class="section-title">Hey I'm Sushmitha. 👋</h2>
+                <h2 class="section-title">Engineering Intelligent Systems</h2>
                 <p class="about-text">
                     I am a results-driven Robotics Engineer currently pursuing my M.Sc. in Automation & Robotics at TU
                     Dortmund, Germany. With a strong foundation in AI-powered solutions, autonomous systems, and
