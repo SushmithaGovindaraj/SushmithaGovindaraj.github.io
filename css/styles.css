@@ -432,6 +432,19 @@ body:not([data-theme="light"]) .moon-icon {
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
     transform: rotate(-3deg);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: profileGlow 4s ease-in-out infinite;
+}
+
+@keyframes profileGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 rgba(124, 58, 237, 0);
+    }
+
+    50% {
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 20px rgba(124, 58, 237, 0.3);
+    }
 }
 
 .profile-image:hover {
