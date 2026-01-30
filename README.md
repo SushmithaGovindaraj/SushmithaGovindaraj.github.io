@@ -1,101 +1,59 @@
 # Sushmitha Govindaraj - Portfolio Website
 
-A modern, responsive portfolio website showcasing my work as a Robotics Engineer specializing in AI-powered solutions, autonomous systems, and intelligent automation.
+A high-end, interactive portfolio website showcasing my work as a Robotics & AI Engineer specializing in Autonomous Systems, Industrial Data Science, and Intelligent Automation.
 
 ## 🚀 Live Demo
 
-Visit the live portfolio: [sushmithagovindaraj.github.io](https://sushmithagovindaraj.github.io/)
+Explore the interactive experience: [sushmithagovindaraj.github.io](https://sushmithagovindaraj.github.io/)
 
-## ✨ Features
+## ✨ Premium Features
 
-- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
-- **Dark/Light Mode**: Toggle between themes with a single click (Defaults to Dark Mode)
-- **Smooth Animations**: Typing effects, scroll animations, and hover interactions
-- **Modern UI**: Clean, professional design with gradient accents
-- **SEO Optimized**: Proper meta tags and semantic HTML structure
+- **Interactive 3D UI**: Skill cards with perspective tilt and magnetic mouse-glow effects.
+- **Dynamic Particle System**: Custom Canvas-based background responding to user presence.
+- **Adaptive Dark/Light Mode**: Premium themes with glassmorphic aesthetics and ambient shadows.
+- **Advanced Micro-animations**: Breathing profile highlights, smooth transitions, and typing effects.
+- **Responsive Layout**: Precision-engineered for all devices from mobile to large displays.
 
-## 🛠️ Technologies Used
+## 🛠️ Technical Stack
 
-- **HTML5**: Semantic markup
-- **CSS3**: Modern styling with CSS Grid and Flexbox
-- **JavaScript**: Vanilla JS for interactivity
-- **Google Fonts**: Inter font family
+- **Core**: HTML5, CSS3 (Modern Flex/Grid), JavaScript (Vanilla ES6+)
+- **Robotics & AI**: ROS/ROS2, PyTorch, TensorFlow, OpenCV, MoveIt
+- **Data Engineering**: Databricks, PySpark, FAISS, Vector DBs
+- **Design**: Premium Glassmorphism, 3D CSS Transforms, Canvas API
 
 ## 📂 Project Structure
 
 ```
 portfolio-website/
-├── index.html          # Main HTML file
+├── index.html          # Main application structure
 ├── css/
-│   └── styles.css      # All styles
+│   └── styles.css      # Design system & advanced animations
 ├── js/
-│   └── script.js       # Interactive features
-└── assets/
-    ├── headshot.jpg    # Profile photo
-    ├── wilo-logo.jpg   # Company logos
-    ├── tu-dortmund.jpg
-    ├── aatek-robo.jpg
-    └── Sushmitha_Govindaraj_CV_general.pdf
+│   └── script.js       # Particle physics & 3D interactions
+└── assets/             # Project media & documentation
 ```
 
-## 🎨 Sections
+## 🎨 Portfolio Highlights
 
-1. **Home**: Hero section with animated typing effect
-2. **About**: Professional summary and background
-3. **Experience**: Work history with detailed descriptions
-   - Wilo Group (Werkstudent - Data Science & Control Engineering)
-   - TU Dortmund (Master Thesis Student & Research Assistant)
-   - AAtek Robo Private Limited (Project Intern)
-4. **Projects**: Showcase of key projects
-   - AI-Based SI/PI-Compliant PCB Design
-   - Robotic Arm on Omnidirectional Base
-   - Sonar-Based SLAM for Autonomous Vessels
-   - RTPCR Sample Collection Robot
-5. **Contact**: Social media links and contact information
+### 👨‍💻 Experience
+- **Wilo Group**: Werkstudentin (Data Science & Control Engineering) - Big Data & Databricks.
+- **TU Dortmund**: Master Thesis & Research Assistant (Autonomous Navigation & Signal Integrity).
+- **AAtek Robo**: Project Intern (Medical Robotics & Automation).
 
-## 🚀 Getting Started
+### 🚀 Key Projects
+1. **Industrial RAG Assistant**: Production system using Claude Sonnet 4 & FAISS for technical querying.
+2. **Sonar-Based SLAM**: Research on GNSS-free localization for autonomous vessels using LSTM networks.
+3. **Advanced Lane Detection**: Computer Vision pipeline for autonomous navigation and AGVs.
+4. **AI-Based PCB Design**: Optimizing high-speed signal integrity using deep learning models.
+5. **Robotic Arm on Omni-Base**: 5-axis manipulation on Mecanum-wheeled platforms.
+6. **RTPCR Sample Robot**: Automated medical processing system using ROS & OpenCV.
 
-### Local Development
-
-1. Clone the repository:
-```bash
-git clone https://github.com/SushmithaGovindaraj/SushmithaGovindaraj.github.io.git
-```
-
-2. Navigate to the project directory:
-```bash
-cd SushmithaGovindaraj.github.io
-```
-
-3. Open `index.html` in your browser:
-```bash
-# On Linux/Mac
-open index.html
-
-# On Windows
-start index.html
-```
-
-### Deployment
-
-This website is hosted on **GitHub Pages**.
-
-## 📱 Contact
+## 📱 Connect
 
 - **LinkedIn**: [Sushmitha Govindaraj](https://www.linkedin.com/in/sushmitha-govindaraj-40534a196)
-- **Email**: sushmitharaj2000@gmail.com
 - **GitHub**: [@SushmithaGovindaraj](https://github.com/SushmithaGovindaraj)
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🙏 Acknowledgments
-
-- Icons from [Lucide Icons](https://lucide.dev/)
-- Fonts from [Google Fonts](https://fonts.google.com/)
-- Project images from [Unsplash](https://unsplash.com/)
+- **Email**: sushmitharaj2000@gmail.com
 
 ---
 
-**Made with ❤️ by Sushmitha Govindaraj**
+**Crafted with precision by Sushmitha Govindaraj**
