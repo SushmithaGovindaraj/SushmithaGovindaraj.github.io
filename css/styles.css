@@ -960,7 +960,15 @@ body:not([data-theme="light"]) .moon-icon {
 }
 
 .project-content {
-    padding: 1.5rem;
+    padding: 2rem;
+    background: rgba(17, 24, 39, 0.4);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .project-content {
+    background: rgba(255, 255, 255, 0.6);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .project-content h3 {
