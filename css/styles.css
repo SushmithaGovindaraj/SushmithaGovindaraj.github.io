@@ -547,10 +547,11 @@ body:not([data-theme="light"]) .moon-icon {
 }
 
 .about-text {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     line-height: 1.8;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    opacity: 0.9;
 }
 
 .about-actions {
