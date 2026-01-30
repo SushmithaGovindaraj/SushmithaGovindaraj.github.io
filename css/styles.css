@@ -322,6 +322,8 @@ section:nth-of-type(even) {
     color: var(--text-color);
 }
 
+
+
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -902,12 +904,14 @@ body:not([data-theme="light"]) .moon-icon {
 }
 
 .position li::before {
-    content: '•';
-    /* Simple dot instead of arrow */
-    position: absolute;
-    left: 0;
+    content: "•";
     color: var(--primary-color);
     font-weight: bold;
+    display: inline-block;
+    width: 1.5rem;
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
 }
 
 .position-divider {
