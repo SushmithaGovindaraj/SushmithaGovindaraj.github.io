@@ -567,6 +567,15 @@ body:not([data-theme="light"]) .moon-icon {
     opacity: 0.9;
 }
 
+.about-text strong {
+    color: var(--primary-light);
+    font-weight: 600;
+}
+
+[data-theme="light"] .about-text strong {
+    color: var(--primary-color);
+}
+
 .about-actions {
     text-align: center;
     margin-top: 2rem;
