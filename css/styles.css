@@ -911,11 +911,10 @@ body:not([data-theme="light"]) .moon-icon {
 }
 
 .position-divider {
-    text-align: center;
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    margin: 1.5rem 0;
-    font-weight: 300;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+    margin: 2rem 0;
+    width: 100%;
 }
 
 /* Projects Section */
