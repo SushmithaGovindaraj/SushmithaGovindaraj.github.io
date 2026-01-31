@@ -34,8 +34,7 @@ build/
 .env
 .env.local
 .env.*.local
-
-# Antigravity Kit
 .agent/
 brain/
 
+.gitignore
