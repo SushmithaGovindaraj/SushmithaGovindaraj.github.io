@@ -475,7 +475,7 @@ main {
 /* === About Section (90/10 Asymmetric) === */
 .section-about {
   padding: var(--space-4xl) 0;
-  background: var(--color-background);
+  background: transparent;
   position: relative;
 }
 
