@@ -680,7 +680,7 @@ main {
 .section-experience,
 .section-education {
   padding: var(--space-4xl) 0;
-  background: var(--color-surface);
+  background: transparent;
 }
 
 .timeline {
@@ -1003,7 +1003,7 @@ main {
 /* === Publications Section === */
 .section-publications {
   padding: var(--space-4xl) 0;
-  background: var(--color-surface);
+  background: transparent;
 }
 
 .publications-list {
@@ -1083,7 +1083,7 @@ main {
 /* === Certifications Section === */
 .section-certifications {
   padding: var(--space-4xl) 0;
-  background: var(--color-surface);
+  background: transparent;
 }
 
 .certifications-list {
