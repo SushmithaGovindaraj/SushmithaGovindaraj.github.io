@@ -84,8 +84,12 @@ body {
   color: var(--color-text);
   background-color: var(--color-background);
   overflow-x: hidden;
+  max-width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* === Particles Canvas === */
@@ -202,8 +206,10 @@ main {
 
 .container {
   max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 var(--space-xl);
+  overflow-x: hidden;
 }
 
 .container-asymmetric {
@@ -606,6 +612,76 @@ main {
   .cert-link {
     font-size: 0.7rem;
     padding: 4px 8px;
+  }
+}
+
+/* Small devices (iPhones and smaller phones) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  /* Reduce section padding on very small screens */
+  .section-about,
+  .section-skills,
+  .section-education,
+  .section-experience,
+  .section-projects,
+  .section-publications,
+  .section-certifications {
+    padding: var(--space-3xl) 0;
+  }
+
+  /* Education cards - extra small screens */
+  .education-grid {
+    gap: var(--space-md);
+  }
+
+  .education-card {
+    padding: var(--space-md);
+  }
+
+  .education-degree {
+    font-size: 1rem;
+  }
+
+  .education-institution {
+    font-size: 0.9rem;
+  }
+
+  /* Certifications - extra small screens */
+  .cert-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-sm);
+  }
+
+  .cert-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .cert-title {
+    font-size: 0.8rem;
+  }
+
+  /* Ensure all images are constrained */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Prevent text overflow */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 }
 
