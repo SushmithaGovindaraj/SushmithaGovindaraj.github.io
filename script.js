@@ -6,97 +6,259 @@
 // ============================================
 // 1. PARTICLE SYSTEM (Canvas Background)
 // ============================================
-class ParticleSystem {
+// ============================================
+// 1. DOT GRID SYSTEM (New Background)
+// ============================================
+
+// Helper: Hex to RGB
+function hexToRgb(hex) {
+  const m = hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
+  if (!m) return { r: 0, g: 0, b: 0 };
+  return {
+    r: parseInt(m[1], 16),
+    g: parseInt(m[2], 16),
+    b: parseInt(m[3], 16)
+  };
+}
+
+class DotGrid {
   constructor(canvas) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
-    this.particles = [];
-    this.particleCount = 80;
-    this.connectionDistance = 120;
-    this.mouse = { x: null, y: null };
+    this.wrapper = canvas.parentElement;
+
+    // Configuration (from user request)
+    this.config = {
+      dotSize: 4,
+      gap: 15,
+      baseColor: '#271E37', // Dark Purple
+      activeColor: '#5227FF', // Bright Blue/Purple
+      proximity: 120,
+      activeProximity: 280, // Extended range for mouse influence
+      shockRadius: 250,
+      shockStrength: 5,
+      resistance: 750,
+      returnDuration: 1.5,
+      speedTrigger: 100,
+      maxSpeed: 5000
+    };
+
+    this.dots = [];
+    this.pointer = {
+      x: 0,
+      y: 0,
+      vx: 0,
+      vy: 0,
+      speed: 0,
+      lastTime: 0,
+      lastX: 0,
+      lastY: 0
+    };
+
+    this.baseRgb = hexToRgb(this.config.baseColor);
+    this.activeRgb = hexToRgb(this.config.activeColor);
 
     this.init();
   }
 
   init() {
     this.resize();
-    window.addEventListener('resize', () => this.resize());
-    window.addEventListener('mousemove', (e) => {
-      this.mouse.x = e.clientX;
-      this.mouse.y = e.clientY;
+    this.buildGrid();
+
+    // Event Listeners
+    window.addEventListener('resize', () => {
+      this.resize();
+      this.buildGrid();
     });
 
-    // Create particles
-    for (let i = 0; i < this.particleCount; i++) {
-      this.particles.push({
-        x: Math.random() * this.canvas.width,
-        y: Math.random() * this.canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 2 + 1
-      });
-    }
+    // Throttled mouse move for Physics calculation
+    let lastMove = 0;
+    window.addEventListener('mousemove', (e) => {
+      const now = performance.now();
+      if (now - lastMove < 20) return; // 50fps throttle
+      lastMove = now;
+      this.handleMouseMove(e);
+    }, { passive: true });
 
+    // Click interaction
+    window.addEventListener('click', (e) => this.handleClick(e));
+
+    // Start Animation Loop
     this.animate();
   }
 
   resize() {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
+    // Use window size for background coverage
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+
+    const dpr = window.devicePixelRatio || 1;
+    this.canvas.width = this.width * dpr;
+    this.canvas.height = this.height * dpr;
+    this.canvas.style.width = `${this.width}px`;
+    this.canvas.style.height = `${this.height}px`;
+
+    this.ctx.scale(dpr, dpr);
+  }
+
+  buildGrid() {
+    const { dotSize, gap } = this.config;
+
+    const cols = Math.floor((this.width + gap) / (dotSize + gap));
+    const rows = Math.floor((this.height + gap) / (dotSize + gap));
+    const cell = dotSize + gap;
+
+    // Center the grid
+    const gridW = cell * cols - gap;
+    const gridH = cell * rows - gap;
+    const startX = (this.width - gridW) / 2 + dotSize / 2;
+    const startY = (this.height - gridH) / 2 + dotSize / 2;
+
+    this.dots = [];
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        this.dots.push({
+          cx: startX + x * cell,
+          cy: startY + y * cell,
+          xOffset: 0,
+          yOffset: 0,
+          _inertiaApplied: false
+        });
+      }
+    }
+  }
+
+  handleMouseMove(e) {
+    const now = performance.now();
+    const dt = this.pointer.lastTime ? now - this.pointer.lastTime : 16;
+
+    const dx = e.clientX - this.pointer.lastX;
+    const dy = e.clientY - this.pointer.lastY;
+
+    let vx = (dx / dt) * 1000;
+    let vy = (dy / dt) * 1000;
+
+    let speed = Math.hypot(vx, vy);
+    if (speed > this.config.maxSpeed) {
+      const scale = this.config.maxSpeed / speed;
+      vx *= scale;
+      vy *= scale;
+      speed = this.config.maxSpeed;
+    }
+
+    this.pointer.lastTime = now;
+    this.pointer.lastX = e.clientX;
+    this.pointer.lastY = e.clientY;
+    this.pointer.vx = vx;
+    this.pointer.vy = vy;
+    this.pointer.speed = speed;
+    this.pointer.x = e.clientX;
+    this.pointer.y = e.clientY;
+
+    // Apply Inertia to dots nearby
+    this.dots.forEach(dot => {
+      const dist = Math.hypot(dot.cx - this.pointer.x, dot.cy - this.pointer.y);
+
+      if (speed > this.config.speedTrigger && dist < this.config.proximity && !dot._inertiaApplied) {
+        dot._inertiaApplied = true;
+
+        // Calculate push target (Simulating inertia throw)
+        const pushX = (dot.cx - this.pointer.x) * 0.2 + vx * 0.05;
+        const pushY = (dot.cy - this.pointer.y) * 0.2 + vy * 0.05;
+
+        // GSAP Animation replacing InertiaPlugin
+        gsap.killTweensOf(dot);
+        gsap.to(dot, {
+          xOffset: pushX,
+          yOffset: pushY,
+          duration: 0.4,
+          ease: "power2.out",
+          onComplete: () => {
+            gsap.to(dot, {
+              xOffset: 0,
+              yOffset: 0,
+              duration: this.config.returnDuration,
+              ease: "elastic.out(1, 0.5)"
+            });
+            dot._inertiaApplied = false;
+          }
+        });
+      }
+    });
+  }
+
+  handleClick(e) {
+    const cx = e.clientX;
+    const cy = e.clientY;
+
+    this.dots.forEach(dot => {
+      const dist = Math.hypot(dot.cx - cx, dot.cy - cy);
+
+      if (dist < this.config.shockRadius && !dot._inertiaApplied) {
+        dot._inertiaApplied = true;
+        gsap.killTweensOf(dot);
+
+        const falloff = Math.max(0, 1 - dist / this.config.shockRadius);
+        const pushX = (dot.cx - cx) * this.config.shockStrength * falloff;
+        const pushY = (dot.cy - cy) * this.config.shockStrength * falloff;
+
+        // Shockwave then return
+        gsap.to(dot, {
+          xOffset: pushX,
+          yOffset: pushY,
+          duration: 0.5,
+          ease: "power3.out",
+          onComplete: () => {
+            gsap.to(dot, {
+              xOffset: 0,
+              yOffset: 0,
+              duration: this.config.returnDuration,
+              ease: "elastic.out(1, 0.5)"
+            });
+            dot._inertiaApplied = false;
+          }
+        });
+      }
+    });
   }
 
   animate() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.clearRect(0, 0, this.width, this.height);
 
-    // Update and draw particles
-    this.particles.forEach((particle, i) => {
-      // Update position
-      particle.x += particle.vx;
-      particle.y += particle.vy;
+    const proxSq = this.config.activeProximity * this.config.activeProximity;
+    const { dotSize, baseColor } = this.config;
+    const radius = dotSize / 2;
 
-      // Boundary check
-      if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
-      if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+    this.dots.forEach(dot => {
+      const ox = dot.cx + dot.xOffset;
+      const oy = dot.cy + dot.yOffset;
 
-      // Mouse interaction
-      if (this.mouse.x !== null) {
-        const dx = this.mouse.x - particle.x;
-        const dy = this.mouse.y - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+      // Interaction Color Calculation
+      let style = baseColor;
 
-        if (distance < 150) {
-          const force = (150 - distance) / 150;
-          particle.vx += (dx / distance) * force * 0.02;
-          particle.vy += (dy / distance) * force * 0.02;
+      // Check distance to mouse for color
+      if (this.pointer.x !== 0 && this.pointer.y !== 0) {
+        const dx = dot.cx - this.pointer.x;
+        const dy = dot.cy - this.pointer.y;
+        const dsq = dx * dx + dy * dy;
+
+        if (dsq <= proxSq) {
+          const dist = Math.sqrt(dsq);
+          const t = 1 - dist / this.config.activeProximity;
+
+          // Smooth color interpolation
+          const r = Math.round(this.baseRgb.r + (this.activeRgb.r - this.baseRgb.r) * t);
+          const g = Math.round(this.baseRgb.g + (this.activeRgb.g - this.baseRgb.g) * t);
+          const b = Math.round(this.baseRgb.b + (this.activeRgb.b - this.baseRgb.b) * t);
+          style = `rgb(${r},${g},${b})`;
         }
       }
 
-      // Damping
-      particle.vx *= 0.99;
-      particle.vy *= 0.99;
-
-      // Draw particle
+      // Draw Dot
+      this.ctx.fillStyle = style;
       this.ctx.beginPath();
-      this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-      this.ctx.fillStyle = 'rgba(0, 217, 255, 0.5)'; // Cyan
+      this.ctx.arc(ox, oy, radius, 0, Math.PI * 2);
       this.ctx.fill();
-
-      // Draw connections
-      this.particles.slice(i + 1).forEach(otherParticle => {
-        const dx = particle.x - otherParticle.x;
-        const dy = particle.y - otherParticle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < this.connectionDistance) {
-          this.ctx.beginPath();
-          this.ctx.moveTo(particle.x, particle.y);
-          this.ctx.lineTo(otherParticle.x, otherParticle.y);
-          const opacity = (1 - distance / this.connectionDistance) * 0.25;
-          this.ctx.strokeStyle = `rgba(0, 217, 255, ${opacity})`; // Cyan
-          this.ctx.lineWidth = 0.5;
-          this.ctx.stroke();
-        }
-      });
     });
 
     requestAnimationFrame(() => this.animate());
@@ -403,7 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.innerWidth >= 768 && !prefersReducedMotion) {
     const canvas = document.getElementById('particles-canvas');
     if (canvas) {
-      new ParticleSystem(canvas);
+      new DotGrid(canvas);
     }
   }
 
@@ -437,7 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Log initialization (remove in production)
   console.log('%c[Portfolio] Systems initialized successfully', 'color: #00FF41; font-weight: bold;');
   console.log('%c[Portfolio] Terminal Green palette loaded', 'color: #00FF41;');
-  console.log('%c[Portfolio] Particle system:', window.innerWidth >= 768 ? 'Active' : 'Disabled (mobile)', 'color: #00D9FF;');
+  console.log('%c[Portfolio] DotGrid system:', window.innerWidth >= 768 ? 'Active' : 'Disabled (mobile)', 'color: #00D9FF;');
 });
 
 // ============================================
@@ -445,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
-    ParticleSystem,
+    DotGrid,
     TerminalTyping,
     ScrollReveal,
     SmoothScroll,
