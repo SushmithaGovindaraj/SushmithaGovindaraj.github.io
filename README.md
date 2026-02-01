@@ -1,6 +1,6 @@
 # Sushmitha Govindaraj - Portfolio
 
-> **Cybernetic Precision Design** — A next-generation portfolio for Robotics & AI Engineer
+> **Live Portfolio Website:** [https://sushmithagovindaraj.github.io/](https://sushmithagovindaraj.github.io/)
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-Live-00FF41?style=for-the-badge)](https://sushmithagovindaraj.github.io)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
