@@ -935,7 +935,7 @@ main {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-text);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-sm);
   line-height: 1.4;
 }
 
