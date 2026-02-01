@@ -631,22 +631,24 @@ main {
 
   .cert-card {
     padding: var(--space-sm) var(--space-md);
-    text-align: left;
-    align-items: flex-start;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
   }
 
   .cert-info {
-    text-align: left;
+    text-align: left !important;
+    align-items: flex-start !important;
   }
 
   .cert-title {
     font-size: 0.85rem;
-    text-align: left;
+    text-align: left !important;
   }
 
   .cert-issuer {
     font-size: 0.7rem;
-    text-align: left;
+    text-align: left !important;
+    justify-content: flex-start !important;
   }
 
   .cert-link {
@@ -709,10 +711,11 @@ main {
     font-size: 0.9rem;
   }
 
-  /* Certifications - extra small screens */
+  /* Certifications - extra small screens - LEFT ALIGNED */
   .cert-card {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
     padding: var(--space-sm);
   }
 
@@ -722,8 +725,19 @@ main {
     font-size: 1rem;
   }
 
+  .cert-info {
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
   .cert-title {
     font-size: 0.8rem;
+    text-align: left !important;
+  }
+
+  .cert-issuer {
+    text-align: left !important;
+    justify-content: flex-start !important;
   }
 
   /* Ensure all images are constrained */
