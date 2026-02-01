@@ -565,6 +565,48 @@ main {
     max-width: 280px;
     margin: 0 auto;
   }
+
+  /* Education Grid - Stack on mobile */
+  .education-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .education-card {
+    padding: var(--space-lg);
+  }
+
+  .education-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .education-degree {
+    font-size: 1.1rem;
+  }
+
+  /* Certifications Grid - Stack on mobile */
+  .cert-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .cert-card {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .cert-title {
+    font-size: 0.85rem;
+  }
+
+  .cert-issuer {
+    font-size: 0.7rem;
+  }
+
+  .cert-link {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
 }
 
 .about-paragraph strong {
