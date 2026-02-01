@@ -855,6 +855,102 @@ main {
   border-color: var(--color-primary);
 }
 
+/* === Publications Section === */
+.section-publications {
+  padding: var(--space-4xl) 0;
+  background: var(--color-surface);
+}
+
+.publications-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.publication-item {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 8px;
+  padding: var(--space-xl);
+  transition: all var(--transition-base);
+}
+
+.publication-item:hover {
+  border-left-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
+  transform: translateX(4px);
+}
+
+.publication-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+  line-height: 1.4;
+}
+
+.publication-venue {
+  font-size: 0.9375rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+  font-weight: 500;
+}
+
+.publication-description {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* === Certifications Section === */
+.section-certifications {
+  padding: var(--space-4xl) 0;
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+}
+
+.cert-item {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  padding: var(--space-xl);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+
+.cert-item:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-4px);
+}
+
+.cert-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+}
+
+.cert-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.cert-issuer {
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+  font-weight: 500;
+}
+
+.cert-date {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
 /* === Credentials Section === */
 .section-credentials {
   padding: var(--space-4xl) 0;
