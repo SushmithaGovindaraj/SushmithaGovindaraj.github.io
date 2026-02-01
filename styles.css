@@ -574,6 +574,26 @@ main {
 }
 
 @media (max-width: 768px) {
+
+  /* Force left alignment on all mobile content */
+  section,
+  .container,
+  .section-title,
+  .education-card,
+  .cert-card,
+  .timeline-item,
+  .project-card,
+  .publication-item,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    text-align: left !important;
+  }
+
   .about-grid {
     grid-template-columns: 1fr;
     gap: var(--space-xl);
@@ -629,6 +649,26 @@ main {
 
 /* Small devices (iPhones and smaller phones) */
 @media (max-width: 480px) {
+
+  /* Force left alignment on all mobile content */
+  section,
+  .container,
+  .section-title,
+  .education-card,
+  .cert-card,
+  .timeline-item,
+  .project-card,
+  .publication-item,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    text-align: left !important;
+  }
+
   .container {
     padding: 0 var(--space-md);
   }
