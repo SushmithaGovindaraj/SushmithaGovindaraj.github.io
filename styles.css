@@ -149,11 +149,17 @@ body {
 }
 
 .nav-link:hover,
-.nav-link:focus {
+.nav-link:focus,
+.nav-link.active {
   color: var(--color-primary);
   background: rgba(168, 85, 247, 0.1);
   transform: translateX(4px);
   outline: none;
+}
+
+.nav-link.active {
+  font-weight: 700;
+  border-left: 2px solid var(--color-primary);
 }
 
 .nav-terminal__status {
