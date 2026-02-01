@@ -326,19 +326,23 @@ main {
 
 .hero-title__primary {
   display: block;
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 900;
-  line-height: 1.1;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-text));
+  line-height: 1;
+  font-family: 'Space Grotesk', var(--font-heading);
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #00D9FF 0%, #00FFF0 50%, #FFFFFF 100%);
   background-size: 200% 200%;
-  animation: gradientShift 3s ease infinite;
+  animation: nameGradient 4s ease infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: var(--space-sm);
+  text-shadow: 0 0 80px rgba(0, 217, 255, 0.5);
+  margin-bottom: var(--space-md);
+  text-transform: none;
 }
 
-@keyframes gradientShift {
+@keyframes nameGradient {
 
   0%,
   100% {
