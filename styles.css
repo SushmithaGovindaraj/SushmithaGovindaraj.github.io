@@ -92,6 +92,18 @@ body {
   overflow-wrap: break-word;
 }
 
+/* Prevent internal scrollbars in sections */
+section,
+.container,
+.education-grid,
+.cert-grid,
+.timeline,
+.projects-grid,
+.publications-list {
+  overflow: visible !important;
+  max-height: none !important;
+}
+
 /* === Particles Canvas === */
 #particles-canvas {
   position: fixed;
