@@ -1,0 +1,52 @@
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.sublime-project
+.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary Files
+*.tmp
+*.temp
+.cache/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build artifacts (if using build tools later)
+dist/
+build/
+.next/
+out/
+
+# Dependencies (if adding npm later)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Design System (keep MASTER.md, ignore temp files)
+design-system/**/*.tmp
+design-system/**/*.log
+
+# Agent files (optional - uncomment if you want to exclude)
+# .agent/

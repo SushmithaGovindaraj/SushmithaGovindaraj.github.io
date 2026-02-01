@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Sushmitha Govindaraj - Robotics & AI Engineer specializing in autonomous systems, deep learning, and sensor fusion. M.Sc. from TU Dortmund.">
+    <meta name="keywords"
+        content="Robotics Engineer, AI Engineer, Autonomous Systems, ROS2, PyTorch, SLAM, Deep Learning, Sensor Fusion">
+    <meta name="author" content="Sushmitha Govindaraj">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Sushmitha Govindaraj - Robotics & AI Engineer">
+    <meta property="og:description"
+        content="Passionate about autonomous systems and intelligent automation. Specializing in deep learning, robotic manipulation, and sensor fusion.">
+    <meta property="og:type" content="website">
+
+    <title>Sushmitha Govindaraj | Robotics & AI Engineer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Particle System Canvas Background -->
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+    <!-- Navigation Terminal -->
+    <nav class="nav-terminal" role="navigation" aria-label="Main navigation">
+        <div class="nav-terminal__header">
+            <span class="nav-terminal__prompt">root@portfolio:~$</span>
+        </div>
+        <ul class="nav-terminal__menu">
+            <li><a href="#about" class="nav-link" data-scroll>./about</a></li>
+            <li><a href="#skills" class="nav-link" data-scroll>./skills</a></li>
+            <li><a href="#experience" class="nav-link" data-scroll>./experience</a></li>
+            <li><a href="#projects" class="nav-link" data-scroll>./projects</a></li>
+            <li><a href="#contact" class="nav-link" data-scroll>./contact</a></li>
+        </ul>
+        <div class="nav-terminal__status">
+            <span class="status-indicator"></span>
+            <span class="status-text">online</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Terminal Section -->
+        <section id="hero" class="hero-terminal" aria-labelledby="hero-title">
+            <div class="hero-terminal__container">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <span class="terminal-dot terminal-dot--close"></span>
+                        <span class="terminal-dot terminal-dot--minimize"></span>
+                        <span class="terminal-dot terminal-dot--maximize"></span>
+                        <span class="terminal-title">portfolio.sh</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command" id="typing-effect"></span>
+                            <span class="terminal-cursor">█</span>
+                        </div>
+                        <div class="terminal-output" id="terminal-output"></div>
+                    </div>
+                </div>
+                <div class="hero-terminal__content">
+                    <h1 id="hero-title" class="hero-title">
+                        <span class="hero-title__primary">Sushmitha Govindaraj</span>
+                        <span class="hero-title__secondary">Robotics & AI Engineer</span>
+                    </h1>
+                    <p class="hero-description">
+                        Building autonomous systems that bridge <span class="highlight">deep learning</span>,
+                        <span class="highlight">sensor fusion</span>, and <span class="highlight">intelligent
+                            control</span>
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary" data-scroll>View Projects</a>
+                        <a href="#contact" class="btn btn-secondary" data-scroll>Get in Touch</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Fragment (90/10 Asymmetric) -->
+        <section id="about" class="section-about" aria-labelledby="about-title">
+            <div class="container-asymmetric">
+                <div class="asymmetric-content">
+                    <h2 id="about-title" class="section-title">
+                        <span class="section-title__bracket">[</span>
+                        <span class="section-title__text">About</span>
+                        <span class="section-title__bracket">]</span>
+                    </h2>
+                    <div class="about-grid">
+                        <div class="about-image">
+                            <img src="assets/headshot.jpg" alt="Sushmitha Govindaraj - Robotics Engineer"
+                                class="profile-image">
+                        </div>
+                        <div class="about-text">
+                            <p class="about-paragraph">
+                                I'm a results-driven Robotics Engineer pursuing an <strong>M.Sc. in Automation &
+                                    Robotics at TU Dortmund, Germany</strong>,
+                                with a strong foundation in AI-powered solutions, autonomous systems, and industrial
+                                automation.
+                            </p>
+                            <p class="about-paragraph">
+                                My work spans <strong>sonar-based SLAM for autonomous vessels</strong>,
+                                <strong>AI-driven signal processing optimization</strong>
+                                in embedded systems, and <strong>enterprise-scale data science solutions</strong> with
+                                Databricks and PySpark at Wilo Group.
+                            </p>
+                            <p class="about-paragraph">
+                                I specialize in deep learning, robotic manipulation, and sensor data fusion — solving
+                                complex challenges to build
+                                intelligent systems that improve <strong>autonomy</strong>,
+                                <strong>adaptability</strong>, and <strong>efficiency</strong> in robotics.
+                            </p>
+                        </div>
+                        <div class="about-stats">
+                            <div class="stat-card">
+                                <div class="stat-value">4+</div>
+                                <div class="stat-label">Years in Robotics</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">6</div>
+                                <div class="stat-label">Major Projects</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">2</div>
+                                <div class="stat-label">Publications</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Graph -->
+        <section id="skills" class="section-skills" aria-labelledby="skills-title">
+            <div class="container">
+                <h2 id="skills-title" class="section-title">
+                    <span class="section-title__bracket">[</span>
+                    <span class="section-title__text">Technical Stack</span>
+                    <span class="section-title__bracket">]</span>
+                </h2>
+
+                <div class="skills-grid">
+                    <!-- Robotics & Autonomous Systems -->
+                    <div class="skill-category" data-reveal>
+                        <h3 class="skill-category__title">
+                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M9 3v18m0 0l-6-6m6 6l6-6M15 3v18m0 0l-6-6m6 6l6-6" />
+                            </svg>
+                            Robotics & Autonomous Systems
+                        </h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">ROS / ROS2</li>
+                            <li class="skill-item">MoveIt</li>
+                            <li class="skill-item">Sonar SLAM</li>
+                            <li class="skill-item">Control Theory</li>
+                            <li class="skill-item">Sensor Fusion</li>
+                            <li class="skill-item">Path Planning</li>
+                            <li class="skill-item">Robotic Manipulation</li>
+                        </ul>
+                    </div>
+
+                    <!-- AI & Machine Learning -->
+                    <div class="skill-category" data-reveal>
+                        <h3 class="skill-category__title">
+                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg>
+                            AI & Machine Learning / GenAI
+                        </h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">PyTorch / TensorFlow</li>
+                            <li class="skill-item">RAG & LangChain</li>
+                            <li class="skill-item">Computer Vision</li>
+                            <li class="skill-item">Reinforcement Learning & Deep Learning</li>
+                            <li class="skill-item">OpenAI / Claude APIs</li>
+                            <li class="skill-item">Vector Databases (FAISS)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Development & Big Data -->
+                    <div class="skill-category" data-reveal>
+                        <h3 class="skill-category__title">
+                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="16 18 22 12 16 6" />
+                                <polyline points="8 6 2 12 8 18" />
+                            </svg>
+                            Development & Big Data
+                        </h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">Python (Expert)</li>
+                            <li class="skill-item">C++ / C</li>
+                            <li class="skill-item">PySpark</li>
+                            <li class="skill-item">Databricks</li>
+                            <li class="skill-item">Docker</li>
+                            <li class="skill-item">Git / GitHub</li>
+                            <li class="skill-item">Linux / Shell</li>
+                        </ul>
+                    </div>
+
+                    <!-- Industrial Engineering -->
+                    <div class="skill-category" data-reveal>
+                        <h3 class="skill-category__title">
+                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <path d="M3 9h18M9 21V9" />
+                            </svg>
+                            Industrial Engineering
+                        </h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">PCB Design</li>
+                            <li class="skill-item">Embedded Systems</li>
+                            <li class="skill-item">SPICE Simulation</li>
+                            <li class="skill-item">PLC & SCADA</li>
+                            <li class="skill-item">MATLAB</li>
+                            <li class="skill-item">Zuken eCADSTAR</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Timeline -->
+        <section id="experience" class="section-experience" aria-labelledby="experience-title">
+            <div class="container">
+                <h2 id="experience-title" class="section-title">
+                    <span class="section-title__bracket">[</span>
+                    <span class="section-title__text">Experience</span>
+                    <span class="section-title__bracket">]</span>
+                </h2>
+
+                <div class="timeline">
+                    <!-- Wilo Group -->
+                    <div class="timeline-item" data-reveal>
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <img src="assets/wilo-logo.jpg" alt="Wilo Group" class="company-logo">
+                                <div class="timeline-header-text">
+                                    <h3 class="timeline-title">Werkstudentin – Data Science & Control Engineering</h3>
+                                    <span class="timeline-company">Wilo Group</span>
+                                </div>
+                            </div>
+                            <span class="timeline-date">Dec 2025 – Present</span>
+                            <ul class="timeline-details">
+                                <li>Work with <strong>Databricks</strong> for enterprise-scale analytics</li>
+                                <li>Develop <strong>PySpark</strong> solutions for large-scale data processing</li>
+                                <li>Build data science workflows and control engineering solutions for water management
+                                    systems</li>
+                                <li>Optimize data pipelines with cross-functional teams</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Master Thesis -->
+                    <div class="timeline-item" data-reveal>
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <img src="assets/tu-dortmund.jpg" alt="TU Dortmund University" class="company-logo">
+                                <div class="timeline-header-text">
+                                    <h3 class="timeline-title">Master Thesis Student</h3>
+                                    <span class="timeline-company">TU Dortmund University</span>
+                                </div>
+                            </div>
+                            <span class="timeline-date">Nov 2024 – June 2025</span>
+                            <ul class="timeline-details">
+                                <li>Research on <strong>sonar-based SLAM</strong> for GNSS-free localization of
+                                    autonomous vessels</li>
+                                <li>Built localization system using <strong>IMU, DVL, and sonar</strong> in ROS2</li>
+                                <li>Designed <strong>LSTM neural network</strong> to improve underwater odometry</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Research Assistant -->
+                    <div class="timeline-item" data-reveal>
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <img src="assets/tu-dortmund.jpg" alt="TU Dortmund University" class="company-logo">
+                                <div class="timeline-header-text">
+                                    <h3 class="timeline-title">Research Assistant</h3>
+                                    <span class="timeline-company">TU Dortmund University</span>
+                                </div>
+                            </div>
+                            <span class="timeline-date">June 2024 – May 2025</span>
+                            <ul class="timeline-details">
+                                <li>Optimized signal processing in embedded systems using AI</li>
+                                <li>Applied ML for improved circuit performance and signal integrity</li>
+                                <li>Developed Python tools for training, preprocessing, and evaluation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- AAtek Robo -->
+                    <div class="timeline-item" data-reveal>
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <img src="assets/aatek-robo.jpg" alt="AAtek Robo Private Limited" class="company-logo">
+                                <div class="timeline-header-text">
+                                    <h3 class="timeline-title">Project Intern</h3>
+                                    <span class="timeline-company">AAtek Robo Private Limited</span>
+                                </div>
+                            </div>
+                            <span class="timeline-date">Dec 2021 – May 2022</span>
+                            <ul class="timeline-details">
+                                <li>Developed robotic automation for <strong>RTPCR sample collection</strong></li>
+                                <li>Used <strong>Python + ROS</strong> for robot control</li>
+                                <li>Implemented computer vision for detection</li>
+                                <li>Improved lab automation via intelligent control systems</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Grid (Fragmented) -->
+        <section id="projects" class="section-projects" aria-labelledby="projects-title">
+            <div class="container">
+                <h2 id="projects-title" class="section-title">
+                    <span class="section-title__bracket">[</span>
+                    <span class="section-title__text">Featured Projects</span>
+                    <span class="section-title__bracket">]</span>
+                </h2>
+
+                <div class="projects-grid">
+                    <!-- Project 1: Sonar SLAM -->
+                    <article class="project-card project-card--featured" data-reveal>
+                        <div class="project-card__image">
+                            <img src="assets/project-sonar-slam.png" alt="Sonar-Based SLAM for Autonomous Vessels"
+                                loading="lazy">
+                        </div>
+                        <div class="project-card__header">
+                            <h3 class="project-card__title">Sonar-Based SLAM for Autonomous Vessels</h3>
+                            <span class="project-card__tag">Master Thesis</span>
+                        </div>
+                        <p class="project-card__description">
+                            GNSS-free localization research using sensor fusion (IMU + DVL + Sonar).
+                            Implemented LSTM neural network for underwater odometry in ROS2.
+                        </p>
+                        <div class="project-card__tech">
+                            <span class="tech-tag">ROS2</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">LSTM</span>
+                            <span class="tech-tag">Sensor Fusion</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 2: Industrial RAG -->
+                    <article class="project-card" data-reveal>
+                        <div class="project-card__image">
+                            <img src="assets/project-rag.png" alt="Industrial RAG Assistant" loading="lazy">
+                        </div>
+                        <div class="project-card__header">
+                            <h3 class="project-card__title">Industrial RAG Assistant</h3>
+                            <span class="project-card__tag">GenAI</span>
+                        </div>
+                        <p class="project-card__description">
+                            Production-ready document QA system using Claude Sonnet 4 with TF-IDF embeddings + FAISS
+                            for efficient search and source citation support.
+                        </p>
+                        <div class="project-card__tech">
+                            <span class="tech-tag">Claude</span>
+                            <span class="tech-tag">FAISS</span>
+                            <span class="tech-tag">TF-IDF</span>
+                            <span class="tech-tag">Streamlit</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 3: AI PCB Design -->
+                    <article class="project-card" data-reveal>
+                        <div class="project-card__image">
+                            <img src="assets/project-pcb.png" alt="AI-Based SI/PI-Compliant PCB Design" loading="lazy">
+                        </div>
+                        <div class="project-card__header">
+                            <h3 class="project-card__title">AI-Based SI/PI-Compliant PCB Design</h3>
+                            <span class="project-card__tag">Signal Processing</span>
+                        </div>
+                        <p class="project-card__description">
+                            AI models for optimizing high-speed PCB signal integrity.
+                            Dataset creation via SPICE simulations + Zuken eCADSTAR.
+                        </p>
+                        <div class="project-card__tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">AI/ML</span>
+                            <span class="tech-tag">SPICE</span>
+                            <span class="tech-tag">Signal Integrity</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 4: Robotic Arm -->
+                    <article class="project-card" data-reveal>
+                        <div class="project-card__image">
+                            <img src="assets/project-robot-arm.png" alt="Robotic Arm on Omnidirectional Base"
+                                loading="lazy">
+                        </div>
+                        <div class="project-card__header">
+                            <h3 class="project-card__title">Robotic Arm on Omnidirectional Base</h3>
+                            <span class="project-card__tag">Published</span>
+                        </div>
+                        <p class="project-card__description">
+                            5-axis robotic arm on Mecanum wheeled base for precise pick-and-place in dynamic
+                            environments.
+                        </p>
+                        <div class="project-card__tech">
+                            <span class="tech-tag">ROS</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">Computer Vision</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 5: Lane Detection -->
+                    <article class="project-card" data-reveal>
+                        <div class="project-card__image">
+                            <img src="assets/project-lane-detection.png" alt="Advanced Lane Detection System"
+                                loading="lazy">
+                        </div>
+                        <div class="project-card__header">
+                            <h3 class="project-card__title">Advanced Lane Detection System</h3>
+                            <span class="project-card__tag">Computer Vision</span>
+                        </div>
+                        <p class="project-card__description">
+                            Real-time CV for autonomous navigation using Canny edge detection, Hough Transform,
+                            ROI masking, and temporal smoothing.
+                        </p>
+                        <div class="project-card__tech">
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Computer Vision</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 6: RTPCR Robot -->
+                    <article class="project-card" data-reveal>
+                        <div class="project-card__image">
+                            <img src="assets/project-medical-robot.png" alt="RTPCR Sample Collection Robot"
+                                loading="lazy">
+                        </div>
+                        <div class="project-card__header">
+                            <h3 class="project-card__title">RTPCR Sample Collection Robot</h3>
+                            <span class="project-card__tag">Medical Robotics</span>
+                        </div>
+                        <p class="project-card__description">
+                            Robotic system for automated medical sample handling with vision-based detection
+                            to reduce human intervention.
+                        </p>
+                        <div class="project-card__tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">ROS</span>
+                            <span class="tech-tag">OpenCV</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications & Certifications -->
+        <section id="credentials" class="section-credentials">
+            <div class="container">
+                <div class="credentials-grid">
+                    <!-- Publications -->
+                    <div class="credentials-column" data-reveal>
+                        <h2 class="section-title section-title--small">
+                            <span class="section-title__bracket">[</span>
+                            <span class="section-title__text">Publications</span>
+                            <span class="section-title__bracket">]</span>
+                        </h2>
+                        <ul class="credential-list">
+                            <li class="credential-item">
+                                <span class="credential-icon">📖</span>
+                                <div class="credential-content">
+                                    <h4 class="credential-title">RFID-based Human Following Load Carrier</h4>
+                                    <p class="credential-description">Research on human-robot interaction using RFID for
+                                        autonomous industrial transport and tracking</p>
+                                </div>
+                            </li>
+                            <li class="credential-item">
+                                <span class="credential-icon">📖</span>
+                                <div class="credential-content">
+                                    <h4 class="credential-title">Robotic Arm on Omnidirectional Base</h4>
+                                    <p class="credential-description">Design and integration study of a 5-axis
+                                        manipulator on a Mecanum base</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="credentials-column" data-reveal>
+                        <h2 class="section-title section-title--small">
+                            <span class="section-title__bracket">[</span>
+                            <span class="section-title__text">Certifications</span>
+                            <span class="section-title__bracket">]</span>
+                        </h2>
+                        <ul class="credential-list">
+                            <li class="credential-item">
+                                <span class="credential-icon">🎓</span>
+                                <div class="credential-content">
+                                    <h4 class="credential-title">AWS – The Art of the Possible</h4>
+                                    <p class="credential-description">Introduction to Generative AI (Oct 2025)</p>
+                                </div>
+                            </li>
+                            <li class="credential-item">
+                                <span class="credential-icon">🎓</span>
+                                <div class="credential-content">
+                                    <h4 class="credential-title">Hugging Face – Agents Course</h4>
+                                    <p class="credential-description">Intelligent agents & tool integration</p>
+                                </div>
+                            </li>
+                            <li class="credential-item">
+                                <span class="credential-icon">🎓</span>
+                                <div class="credential-content">
+                                    <h4 class="credential-title">LinkedIn Learning</h4>
+                                    <p class="credential-description">No-code ML & Generative AI certifications</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Terminal -->
+        <section id="contact" class="section-contact" aria-labelledby="contact-title">
+            <div class="container">
+                <h2 id="contact-title" class="section-title">
+                    <span class="section-title__bracket">[</span>
+                    <span class="section-title__text">Get in Touch</span>
+                    <span class="section-title__bracket">]</span>
+                </h2>
+
+                <div class="contact-grid">
+                    <div class="contact-terminal" data-reveal>
+                        <div class="terminal-window">
+                            <div class="terminal-header">
+                                <span class="terminal-dot terminal-dot--close"></span>
+                                <span class="terminal-dot terminal-dot--minimize"></span>
+                                <span class="terminal-dot terminal-dot--maximize"></span>
+                                <span class="terminal-title">contact.sh</span>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="terminal-line">
+                                    <span class="terminal-prompt">$</span>
+                                    <span class="terminal-text">cat contact.info</span>
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-item">
+                                        <span class="contact-label">email:</span>
+                                        <a href="mailto:sushmitharaj2000@gmail.com"
+                                            class="contact-link">sushmitharaj2000@gmail.com</a>
+                                    </div>
+                                    <div class="contact-item">
+                                        <span class="contact-label">linkedin:</span>
+                                        <a href="https://linkedin.com/in/sushmitha-govindaraj-40534a196" target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="contact-link">sushmitha-govindaraj-40534a196</a>
+                                    </div>
+                                    <div class="contact-item">
+                                        <span class="contact-label">github:</span>
+                                        <a href="https://github.com/SushmithaGovindaraj" target="_blank"
+                                            rel="noopener noreferrer" class="contact-link">SushmithaGovindaraj</a>
+                                    </div>
+                                </div>
+                                <div class="terminal-line">
+                                    <span class="terminal-prompt">$</span>
+                                    <span class="terminal-cursor">█</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-cta" data-reveal>
+                        <h3 class="contact-cta__title">Let's Build Something Amazing</h3>
+                        <p class="contact-cta__text">
+                            Interested in robotics, AI, or autonomous systems?
+                            Let's connect and explore how we can collaborate on innovative projects.
+                        </p>
+                        <div class="contact-buttons">
+                            <a href="mailto:sushmitharaj2000@gmail.com" class="btn btn-primary">Send Email</a>
+                            <a href="https://linkedin.com/in/sushmitha-govindaraj-40534a196" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-secondary">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">
+                    <span class="terminal-prompt">$</span>
+                    © 2026 Sushmitha Govindaraj. All rights reserved.
+                </p>
+                <p class="footer-built">
+                    Built with <span class="highlight">passion</span> for robotics & AI
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
