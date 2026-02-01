@@ -1371,14 +1371,26 @@ main {
     flex: 0 0 auto;
   }
 
+  /* Reset main padding for mobile */
+  main {
+    padding-left: 0;
+  }
 
+  /* Adjust container padding */
   .container,
   .container-asymmetric {
     padding: 0 var(--space-md);
+    width: 100%;
+    max-width: 100%;
   }
 
-  .hero-terminal__container {
-    gap: var(--space-xl);
+  /* Hero adjustments */
+  .hero-terminal {
+    padding: var(--space-xl) 0;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .hero-title__primary {
@@ -1443,13 +1455,28 @@ main {
 
 /* Small Mobile (480px) */
 @media (max-width: 480px) {
+  :root {
+    --space-lg: 1.25rem;
+    --space-xl: 1.5rem;
+    --space-2xl: 2rem;
+    --space-3xl: 2.5rem;
+    --space-4xl: 3rem;
+  }
+
   .nav-link {
     font-size: 0.75rem;
     padding: 0.25rem 0.5rem;
   }
 
   .hero-title__primary {
-    font-size: 2.5rem;
+    font-size: 1.75rem;
+    /* Reduced from 2.5rem to fit screen */
+    word-break: break-word;
+    /* Prevent overflow */
+  }
+
+  .hero-title__secondary {
+    font-size: 1rem;
   }
 
   .terminal-header {
@@ -1458,10 +1485,256 @@ main {
 
   .terminal-body {
     padding: var(--space-md);
+    min-height: 100px;
+    /* Reduced height */
   }
 
   .project-card,
+  .timeline-content,
+  .about-text {
+    padding: var(--space-lg);
+    /* Reduced padding inside cards */
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  /* Timeline fix for small screens */
+  .timeline {
+    padding-left: var(--space-lg);
+  }
+
+  .timeline::before {
+    left: 6px;
+  }
+
+  .timeline-marker {
+    left: -9px;
+    width: 12px;
+    height: 12px;
+  }
+
   .timeline-content {
+    margin-left: 0;
+    width: 100%;
     padding: var(--space-md);
   }
+
+  .company-logo {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* === Magic Bento Grid === */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--space-md);
+  padding: var(--space-md);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Bento Spanning Layout */
+  .magic-bento-card:nth-child(1) {
+    grid-column: span 2;
+  }
+
+  /* Robotics - Wide */
+  .magic-bento-card:nth-child(2) {
+    grid-row: span 2;
+  }
+
+  /* AI - Tall */
+  .magic-bento-card:nth-child(3) {
+    grid-column: span 1;
+  }
+
+  /* Dev - Normal */
+  .magic-bento-card:nth-child(4) {
+    grid-column: span 1;
+  }
+
+  /* Industrial - Normal */
+  .magic-bento-card:nth-child(5) {
+    grid-column: span 3;
+  }
+
+  /* Cloud - Very Wide */
+}
+
+.magic-bento-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-height: 240px;
+  padding: var(--space-lg);
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  background: rgba(21, 24, 32, 0.6);
+  /* Glass-like surface */
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+
+  /* CSS Variables for Glow */
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 300px;
+  --glow-color: 168, 85, 247;
+}
+
+.magic-bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+  background: rgba(21, 24, 32, 0.8);
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+.magic-bento-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+.magic-bento-card__icon {
+  font-size: 1.5rem;
+  background: rgba(168, 85, 247, 0.1);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: var(--color-primary);
+}
+
+.magic-bento-card__label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--color-border);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.magic-bento-card__content {
+  z-index: 2;
+}
+
+.magic-bento-card__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+  font-family: var(--font-heading);
+}
+
+.magic-bento-card__description {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.magic-bento-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.bento-tag {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  color: var(--color-text);
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.magic-bento-card:hover .bento-tag {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* Border Glow Effect */
+.magic-bento-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  /* Border width */
+  background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+      rgba(var(--glow-color), var(--glow-intensity)) 0%,
+      rgba(var(--glow-color), calc(var(--glow-intensity) * 0.3)) 30%,
+      transparent 60%);
+  border-radius: inherit;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 1;
+}
+
+/* Global Spotlight */
+.global-spotlight {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  background: radial-gradient(circle,
+      rgba(168, 85, 247, 0.1) 0%,
+      rgba(168, 85, 247, 0.05) 20%,
+      transparent 70%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Particles */
+.particle-container-inner {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bento-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.click-ripple {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
 }
