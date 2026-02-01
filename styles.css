@@ -443,11 +443,17 @@ main {
 
 /* === Section Titles === */
 .section-title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  /* Slightly smaller base for mobile safety */
   font-weight: 800;
   margin-bottom: var(--space-3xl);
   color: var(--color-text);
   font-family: var(--font-mono);
+  white-space: nowrap;
+  /* Forces text to stay on one line */
+  overflow: hidden;
+  /* Safety for very small screens */
+  text-overflow: ellipsis;
 }
 
 .section-title__bracket {
