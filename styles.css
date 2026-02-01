@@ -1253,7 +1253,7 @@ main {
 .publication-link {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: 8px;
   color: var(--color-primary);
   text-decoration: none;
   font-weight: 600;
@@ -1263,6 +1263,12 @@ main {
   border-radius: 4px;
   transition: all var(--transition-base);
   margin-top: var(--space-2xl);
+}
+
+.publication-link svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
 }
 
 .publication-link:hover {
@@ -1442,7 +1448,7 @@ main {
 .cert-link {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   margin-top: 8px;
   font-size: 0.75rem;
   color: var(--color-primary);
@@ -1454,6 +1460,12 @@ main {
   background: rgba(168, 85, 247, 0.05);
   transition: all var(--transition-base);
   width: fit-content;
+}
+
+.cert-link svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.5;
 }
 
 .cert-link:hover {
