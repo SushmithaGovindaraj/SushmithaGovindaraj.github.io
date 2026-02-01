@@ -870,7 +870,7 @@ main {
 .publications-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2xl);
+  gap: var(--space-lg);
 }
 
 .publication-item {
@@ -878,8 +878,11 @@ main {
   border: 1px solid var(--color-border);
   border-left: 3px solid var(--color-primary);
   border-radius: 8px;
-  padding: var(--space-xl);
+  padding: var(--space-lg);
   transition: all var(--transition-base);
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
 }
 
 .publication-item:hover {
@@ -888,25 +891,28 @@ main {
   transform: translateX(4px);
 }
 
-.publication-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-text);
-  margin-bottom: var(--space-sm);
-  line-height: 1.4;
+.publication-item .credential-icon {
+  font-size: 1.75rem;
+  flex-shrink: 0;
 }
 
-.publication-venue {
-  font-size: 0.9375rem;
-  color: var(--color-primary);
-  margin-bottom: var(--space-md);
-  font-weight: 500;
+.publication-item .credential-content {
+  flex: 1;
+}
+
+.publication-item .credential-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+  line-height: 1.4;
 }
 
 .publication-description {
   color: var(--color-text-muted);
   line-height: 1.6;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
+  font-size: 0.9375rem;
 }
 
 .publication-link {
