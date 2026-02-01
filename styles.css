@@ -1080,72 +1080,160 @@ main {
   box-shadow: var(--shadow-glow);
 }
 
-/* === Certifications Section === */
+/* === Education Card Grid === */
+.section-education {
+  padding: var(--space-4xl) 0;
+  background: transparent;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: var(--space-2xl);
+}
+
+.education-card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-primary);
+  border-radius: 12px;
+  padding: var(--space-xl);
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  backdrop-filter: blur(10px);
+}
+
+.education-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.3);
+}
+
+.education-header {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: flex-start;
+}
+
+.education-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+  background: white;
+  /* Ensure logos look good */
+  flex-shrink: 0;
+}
+
+.education-info {
+  flex: 1;
+}
+
+.education-degree {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+  font-family: var(--font-heading);
+}
+
+.education-institution {
+  display: block;
+  font-size: 1rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-xs);
+  font-weight: 500;
+}
+
+.education-year {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+.education-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.edu-tag {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background: rgba(168, 85, 247, 0.05);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 20px;
+  color: var(--color-text);
+}
+
+/* === Certifications Badge Grid === */
 .section-certifications {
   padding: var(--space-4xl) 0;
   background: transparent;
 }
 
-.certifications-list {
-  display: flex;
-  flex-direction: column;
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--space-lg);
 }
 
-.cert-item {
-  background: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-left: 3px solid var(--color-primary);
-  border-radius: 8px;
-  padding: var(--space-lg);
-  transition: all var(--transition-base);
+.cert-card {
   display: flex;
+  align-items: center;
   gap: var(--space-md);
-  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: 100px;
+  /* Pill shape */
+  transition: all var(--transition-base);
+  cursor: default;
 }
 
-.cert-item:hover {
-  border-left-color: var(--color-primary);
-  box-shadow: var(--shadow-glow);
-  transform: translateX(4px);
+.cert-card:hover {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px -5px rgba(168, 85, 247, 0.2);
 }
 
-.cert-item .credential-icon {
-  font-size: 1.75rem;
+.cert-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border-radius: 50%;
+  font-size: 1.2rem;
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
   flex-shrink: 0;
 }
 
-.cert-item .credential-content {
-  flex: 1;
+.cert-info {
+  display: flex;
+  flex-direction: column;
 }
 
-.cert-item .credential-title {
-  font-size: 1.0625rem;
+.cert-title {
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-text);
-  margin-bottom: var(--space-xs);
+  line-height: 1.2;
 }
 
-.cert-item .credential-description {
+.cert-issuer {
+  font-size: 0.8rem;
   color: var(--color-text-muted);
-  font-size: 0.9375rem;
-  line-height: 1.6;
-}
-
-/* === Credentials Section === */
-.section-credentials {
-  padding: var(--space-4xl) 0;
-  background: var(--color-surface);
-}
-
-.credentials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: var(--space-3xl);
-}
-
-.credential-list {
-  list-style: none;
+  margin-top: 2px;
 }
 
 .credential-item {
