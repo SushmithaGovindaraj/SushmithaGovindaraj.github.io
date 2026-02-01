@@ -462,6 +462,7 @@ main {
 .section-about {
   padding: var(--space-4xl) 0;
   background: var(--color-background);
+  position: relative;
 }
 
 .asymmetric-content {
@@ -482,15 +483,17 @@ main {
   background: var(--color-surface);
   border-radius: 16px;
   padding: var(--space-md);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   transition: all var(--transition-base);
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-md);
 }
 
 .about-image:hover {
   border-color: var(--color-primary);
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.2);
+  transform: translateY(-4px);
 }
 
 .profile-image {
@@ -505,19 +508,37 @@ main {
   background: var(--color-surface);
   padding: var(--space-2xl);
   border-radius: 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
+  position: relative;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.about-text:hover {
+  border-color: rgba(0, 217, 255, 0.3);
+  box-shadow: var(--shadow-lg);
 }
 
 .about-paragraph {
   font-size: 1.0625rem;
   line-height: 1.8;
   color: var(--color-text);
-  margin: 0;
+  margin-bottom: var(--space-lg);
+  text-align: justify;
+}
+
+.about-paragraph:last-child {
+  margin-bottom: 0;
 }
 
 .about-paragraph:first-child {
-  font-size: 1.125rem;
-  font-weight: 500;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-xl);
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
@@ -534,7 +555,7 @@ main {
 
 .about-paragraph strong {
   color: var(--color-primary);
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .about-stats {
@@ -642,7 +663,8 @@ main {
 }
 
 /* === Experience Timeline === */
-.section-experience {
+.section-experience,
+.section-education {
   padding: var(--space-4xl) 0;
   background: var(--color-surface);
 }
@@ -677,9 +699,37 @@ main {
   background: var(--color-primary);
   border: 3px solid var(--color-surface);
   border-radius: 50%;
-  box-shadow: 0 0 0 4px var(--color-primary-alpha);
-  z-index: 1;
+  box-shadow: 0 0 10px var(--color-primary);
+  z-index: 10;
 }
+
+.timeline-links {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.timeline-links .btn {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(0, 217, 255, 0.05);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--transition-base);
+}
+
+.timeline-links .btn:hover {
+  background: var(--color-primary);
+  color: var(--color-background);
+  box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
+}
+
+
 
 .timeline-content {
   background: var(--color-background);
@@ -687,6 +737,23 @@ main {
   border-radius: 8px;
   padding: var(--space-xl);
   transition: all var(--transition-base);
+}
+
+.education-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.edu-keyword {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--color-primary);
+  background: rgba(0, 255, 65, 0.05);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 255, 65, 0.2);
 }
 
 .timeline-content:hover {
@@ -829,6 +896,34 @@ main {
 .project-card--featured {
   grid-column: span 2;
   border-color: var(--color-primary);
+}
+
+.project-card__links {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: auto;
+  padding: 0 var(--space-xl) var(--space-xl) var(--space-xl);
+}
+
+.project-card__links .btn {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(0, 217, 255, 0.05);
+  /* Cyan with low opacity */
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--transition-base);
+}
+
+.project-card__links .btn:hover {
+  background: var(--color-primary);
+  color: var(--color-background);
+  box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
 }
 
 .project-card__header {
