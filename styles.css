@@ -848,11 +848,11 @@ main {
 }
 
 .skill-tag:hover {
-  background: var(--color-primary-alpha);
+  background: var(--color-surface);
   border-color: var(--color-primary);
   color: var(--color-primary);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-glow-subtle);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
 }
 
 .skill-tag--primary {
@@ -1392,9 +1392,10 @@ main {
 }
 
 .cert-card:hover {
-  background: rgba(168, 85, 247, 0.08);
+  background: var(--color-surface);
   border-color: var(--color-primary);
   transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
 }
 
 .cert-icon {
