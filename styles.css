@@ -458,40 +458,51 @@ main {
 }
 
 /* === About Section (90/10 Asymmetric) === */
-/* === About Section === */
+/* === About Section (90/10 Asymmetric) === */
 .section-about {
   padding: var(--space-4xl) 0;
-  background: var(--color-surface);
+  background: var(--color-background);
+}
+
+.asymmetric-content {
+  max-width: 1200px;
+  margin-left: 0;
 }
 
 .about-grid {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 320px 1fr;
   gap: var(--space-3xl);
   align-items: start;
 }
 
+/* About Image */
 .about-image {
   position: relative;
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: var(--space-md);
+  border: 2px solid var(--color-border);
+  transition: all var(--transition-base);
+}
+
+.about-image:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
 }
 
 .profile-image {
   width: 100%;
   border-radius: 12px;
-  border: 3px solid var(--color-primary);
-  box-shadow: var(--shadow-glow);
-  transition: all var(--transition-base);
-}
-
-.profile-image:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 40px rgba(0, 217, 255, 0.6);
+  object-fit: cover;
+  display: block;
 }
 
 .about-text {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
+  background: var(--color-surface);
+  padding: var(--space-2xl);
+  border-radius: 16px;
+  border: 2px solid var(--color-border);
 }
 
 .about-paragraph {
