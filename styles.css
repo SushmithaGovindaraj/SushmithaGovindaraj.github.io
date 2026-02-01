@@ -441,20 +441,22 @@ main {
   outline: none;
 }
 
-/* === Section Titles === */
 .section-title {
-  font-size: clamp(1.75rem, 4vw, 3rem);
-  /* Slightly smaller base for mobile safety */
+  font-size: clamp(1.5rem, 4vw, 3rem);
   font-weight: 800;
   margin-bottom: var(--space-3xl);
   color: var(--color-text);
   font-family: var(--font-mono);
-  white-space: nowrap;
-  /* Forces text to stay on one line */
-  overflow: hidden;
-  /* Safety for very small screens */
-  text-overflow: ellipsis;
+  text-align: center;
+  width: 100%;
 }
+
+.section-title__wrapper {
+  white-space: nowrap;
+  display: inline-block;
+}
+
+
 
 .section-title__bracket {
   color: var(--color-primary);
