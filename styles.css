@@ -941,7 +941,7 @@ main {
 .publication-description {
   color: var(--color-text-muted);
   line-height: 1.6;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-xl);
   font-size: 0.9375rem;
 }
 
