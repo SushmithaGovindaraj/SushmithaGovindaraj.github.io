@@ -1338,6 +1338,34 @@ main {
     --space-xl: 1.5rem;
   }
 
+  /* Scrollable Horizontal Nav for Mobile */
+  .nav-terminal {
+    margin-bottom: var(--space-lg);
+  }
+
+  .nav-terminal__menu {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: var(--space-sm);
+    justify-content: flex-start;
+    padding-bottom: var(--space-xs);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* Hide scrollbar Firefox */
+  }
+
+  .nav-terminal__menu::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar Chrome/Safari */
+  }
+
+  .nav-link {
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
+
   .container,
   .container-asymmetric {
     padding: 0 var(--space-md);
@@ -1374,20 +1402,36 @@ main {
     margin-bottom: var(--space-xl);
   }
 
+  /* Hero Buttons: Stack vertically for prominence */
   .hero-cta {
     flex-direction: column;
     width: 100%;
+    gap: var(--space-md);
   }
 
-  .btn {
+  .hero-cta .btn {
     width: 100%;
-    text-align: center;
     justify-content: center;
   }
 
+  /* Card/Timeline Buttons: Share row (Side by Side) */
   .project-card__links,
   .timeline-links {
+    display: flex;
     flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .project-card__links .btn,
+  .timeline-links .btn {
+    flex: 1;
+    /* Both buttons take equal width */
+    min-width: 120px;
+    /* Prevent becoming too small */
+    text-align: center;
+    justify-content: center;
+    width: auto;
+    /* Reset global width: 100% */
   }
 }
 
