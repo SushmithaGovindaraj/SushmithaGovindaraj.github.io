@@ -934,14 +934,14 @@ main {
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--color-text);
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-md);
   line-height: 1.4;
 }
 
 .publication-description {
   color: var(--color-text-muted);
   line-height: 1.6;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-lg);
   font-size: 0.9375rem;
 }
 
@@ -969,50 +969,53 @@ main {
 /* === Certifications Section === */
 .section-certifications {
   padding: var(--space-4xl) 0;
+  background: var(--color-surface);
 }
 
-.certifications-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-xl);
+.certifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
 }
 
 .cert-item {
-  background: var(--color-surface);
-  border: 2px solid var(--color-border);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-primary);
   border-radius: 8px;
-  padding: var(--space-xl);
-  text-align: center;
+  padding: var(--space-lg);
   transition: all var(--transition-base);
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
 }
 
 .cert-item:hover {
-  border-color: var(--color-primary);
+  border-left-color: var(--color-primary);
   box-shadow: var(--shadow-glow);
-  transform: translateY(-4px);
+  transform: translateX(4px);
 }
 
-.cert-icon {
-  font-size: 3rem;
-  margin-bottom: var(--space-md);
+.cert-item .credential-icon {
+  font-size: 1.75rem;
+  flex-shrink: 0;
 }
 
-.cert-title {
-  font-size: 1.125rem;
+.cert-item .credential-content {
+  flex: 1;
+}
+
+.cert-item .credential-title {
+  font-size: 1.0625rem;
   font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: var(--space-sm);
-}
-
-.cert-issuer {
   color: var(--color-text);
   margin-bottom: var(--space-xs);
-  font-weight: 500;
 }
 
-.cert-date {
+.cert-item .credential-description {
   color: var(--color-text-muted);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
 }
 
 /* === Credentials Section === */
