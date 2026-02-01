@@ -1,4 +1,4 @@
-# Operating System Files
+# OS Files
 .DS_Store
 .DS_Store?
 ._*
@@ -6,35 +6,47 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+*~
 
-# Editor Files
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
+*.swn
+.sublime-project
+.sublime-workspace
 
-# Temporary Files
-*.tmp
-*.temp
+# Logs
 *.log
-
-# Node modules (if you add any build tools later)
-node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Build outputs (if you add build tools later)
-dist/
-build/
+# Temporary Files
+*.tmp
+*.temp
 .cache/
 
-# Environment variables
+# Environment
 .env
 .env.local
 .env.*.local
-.agent/
-brain/
 
-.gitignore
+# Build artifacts (if using build tools later)
+dist/
+build/
+.next/
+out/
+
+# Dependencies (if adding npm later)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Design System (keep MASTER.md, ignore temp files)
+design-system/**/*.tmp
+design-system/**/*.log
+
+# Agent files (optional - uncomment if you want to exclude)
+# .agent/
