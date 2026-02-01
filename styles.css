@@ -631,14 +631,22 @@ main {
 
   .cert-card {
     padding: var(--space-sm) var(--space-md);
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .cert-info {
+    text-align: left;
   }
 
   .cert-title {
     font-size: 0.85rem;
+    text-align: left;
   }
 
   .cert-issuer {
     font-size: 0.7rem;
+    text-align: left;
   }
 
   .cert-link {
