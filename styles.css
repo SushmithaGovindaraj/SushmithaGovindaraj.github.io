@@ -5,16 +5,28 @@
 
 /* === CSS Variables === */
 :root {
-  /* Terminal Green + Tactical Dark Palette */
-  --color-primary: #00FF41;
-  --color-secondary: #008F11;
-  --color-cta: #FF3333;
-  --color-background: #0A0E27;
-  --color-surface: #0D1117;
-  --color-text: #E6EDF3;
-  --color-text-muted: #7D8590;
-  --color-border: #21262D;
-  --color-accent-cyan: #00D9FF;
+  /* Deep Blue + Coral Palette (Professional & Modern) */
+  --color-primary: #FF6B6B;
+  /* Coral - CTAs, highlights */
+  --color-secondary: #4ECDC4;
+  /* Teal - Secondary accents */
+  --color-cta: #FF6B6B;
+  /* Coral - Primary buttons */
+  --color-background: #0F1419;
+  /* Deep Navy - Page background */
+  --color-surface: #1A1F2E;
+  /* Dark Blue - Cards, modals */
+  --color-text: #E8EDF3;
+  /* Off-white - Body text */
+  --color-text-muted: #A8B2D1;
+  /* Light Blue - Secondary text */
+  --color-border: #2A3244;
+  /* Slate - Borders */
+  --color-accent-blue: #5B9FED;
+  /* Sky Blue - Gradient accents */
+  --color-accent-gold: #FFD93D;
+  /* Gold - Special highlights */
+
 
   /* Spacing System (8-point grid) */
   --space-xs: 0.25rem;
@@ -44,8 +56,9 @@
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 20px rgba(0, 255, 65, 0.3);
-  --shadow-glow-cyan: 0 0 20px rgba(0, 217, 255, 0.3);
+  --shadow-glow: 0 0 30px rgba(255, 107, 107, 0.4);
+  --shadow-glow-blue: 0 0 30px rgba(91, 159, 237, 0.4);
+  --shadow-glow-teal: 0 0 30px rgba(78, 205, 196, 0.4);
 
   /* Animations */
   --transition-fast: 150ms ease;
@@ -316,14 +329,28 @@ main {
 
 .hero-title__primary {
   display: block;
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 900;
   line-height: 1.1;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent-cyan));
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent-blue), var(--color-secondary));
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: var(--space-sm);
+}
+
+@keyframes gradientShift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .hero-title__secondary {
@@ -332,13 +359,50 @@ main {
   font-weight: 600;
   color: var(--color-text-muted);
   font-family: var(--font-mono);
+  margin-bottom: var(--space-sm);
+}
+
+.hero-title__role {
+  display: block;
+  font-size: clamp(0.9rem, 2vw, 1.125rem);
+  font-weight: 500;
+  color: var(--color-secondary);
+  font-family: var(--font-body);
+  margin-top: var(--space-sm);
 }
 
 .hero-description {
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--color-text);
   margin-bottom: var(--space-2xl);
-  max-width: 600px;
+  max-width: 700px;
+  line-height: 1.7;
+}
+
+.hero-stats {
+  display: flex;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat__value {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+
+.hero-stat__label {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .highlight {
@@ -525,8 +589,8 @@ main {
 }
 
 .skill-category:hover {
-  border-left-color: var(--color-accent-cyan);
-  box-shadow: var(--shadow-glow-cyan);
+  border-left-color: var(--color-secondary);
+  box-shadow: var(--shadow-glow-teal);
   transform: translateX(4px);
 }
 
@@ -586,7 +650,7 @@ main {
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(180deg, var(--color-primary), var(--color-accent-cyan));
+  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
 }
 
 .timeline-item {
@@ -737,7 +801,7 @@ main {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent-cyan));
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent-blue));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--transition-slow);
@@ -907,7 +971,7 @@ main {
 
 .contact-link:hover,
 .contact-link:focus {
-  color: var(--color-accent-cyan);
+  color: var(--color-secondary);
   text-decoration: underline;
 }
 

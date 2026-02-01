@@ -14,10 +14,10 @@ class ParticleSystem {
     this.particleCount = 80;
     this.connectionDistance = 120;
     this.mouse = { x: null, y: null };
-    
+
     this.init();
   }
-  
+
   init() {
     this.resize();
     window.addEventListener('resize', () => this.resize());
@@ -25,7 +25,7 @@ class ParticleSystem {
       this.mouse.x = e.clientX;
       this.mouse.y = e.clientY;
     });
-    
+
     // Create particles
     for (let i = 0; i < this.particleCount; i++) {
       this.particles.push({
@@ -36,69 +36,69 @@ class ParticleSystem {
         radius: Math.random() * 2 + 1
       });
     }
-    
+
     this.animate();
   }
-  
+
   resize() {
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
   }
-  
+
   animate() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
+
     // Update and draw particles
     this.particles.forEach((particle, i) => {
       // Update position
       particle.x += particle.vx;
       particle.y += particle.vy;
-      
+
       // Boundary check
       if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
       if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
-      
+
       // Mouse interaction
       if (this.mouse.x !== null) {
         const dx = this.mouse.x - particle.x;
         const dy = this.mouse.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (distance < 150) {
           const force = (150 - distance) / 150;
           particle.vx += (dx / distance) * force * 0.02;
           particle.vy += (dy / distance) * force * 0.02;
         }
       }
-      
+
       // Damping
       particle.vx *= 0.99;
       particle.vy *= 0.99;
-      
+
       // Draw particle
       this.ctx.beginPath();
       this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-      this.ctx.fillStyle = 'rgba(0, 255, 65, 0.6)';
+      this.ctx.fillStyle = 'rgba(255, 107, 107, 0.6)'; // Coral
       this.ctx.fill();
-      
+
       // Draw connections
       this.particles.slice(i + 1).forEach(otherParticle => {
         const dx = particle.x - otherParticle.x;
         const dy = particle.y - otherParticle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (distance < this.connectionDistance) {
           this.ctx.beginPath();
           this.ctx.moveTo(particle.x, particle.y);
           this.ctx.lineTo(otherParticle.x, otherParticle.y);
           const opacity = (1 - distance / this.connectionDistance) * 0.3;
-          this.ctx.strokeStyle = `rgba(0, 255, 65, ${opacity})`;
+          this.ctx.strokeStyle = `rgba(91, 159, 237, ${opacity})`; // Blue
           this.ctx.lineWidth = 0.5;
           this.ctx.stroke();
         }
       });
     });
-    
+
     requestAnimationFrame(() => this.animate());
   }
 }
@@ -123,10 +123,10 @@ class TerminalTyping {
     this.currentChar = 0;
     this.typingSpeed = 50;
     this.pauseDuration = 800;
-    
+
     this.startTyping();
   }
-  
+
   async startTyping() {
     for (const command of this.commands) {
       await this.typeCommand(command);
@@ -134,14 +134,14 @@ class TerminalTyping {
       this.addToOutput(command);
     }
   }
-  
+
   typeCommand(command) {
     return new Promise(resolve => {
       this.currentChar = 0;
       const interval = setInterval(() => {
         this.element.textContent = command.slice(0, this.currentChar + 1);
         this.currentChar++;
-        
+
         if (this.currentChar >= command.length) {
           clearInterval(interval);
           resolve();
@@ -149,7 +149,7 @@ class TerminalTyping {
       }, this.typingSpeed);
     });
   }
-  
+
   addToOutput(command) {
     const line = document.createElement('div');
     line.className = 'terminal-line';
@@ -158,7 +158,7 @@ class TerminalTyping {
     this.outputElement.appendChild(line);
     this.element.textContent = '';
   }
-  
+
   pause(duration) {
     return new Promise(resolve => setTimeout(resolve, duration));
   }
@@ -177,16 +177,16 @@ class ScrollReveal {
         rootMargin: '0px 0px -50px 0px'
       }
     );
-    
+
     this.init();
   }
-  
+
   init() {
     this.elements.forEach(element => {
       this.observer.observe(element);
     });
   }
-  
+
   handleIntersection(entries) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -205,19 +205,19 @@ class SmoothScroll {
     this.links = document.querySelectorAll('[data-scroll]');
     this.init();
   }
-  
+
   init() {
     this.links.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href');
         const targetElement = document.querySelector(targetId);
-        
+
         if (targetElement) {
           const offset = 80; // Account for fixed nav
           const elementPosition = targetElement.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
-          
+
           window.scrollTo({
             top: offsetPosition,
             behavior: 'smooth'
@@ -236,30 +236,30 @@ class GlitchEffect {
     this.cards = document.querySelectorAll('.project-card');
     this.init();
   }
-  
+
   init() {
     this.cards.forEach(card => {
       card.addEventListener('mouseenter', () => this.applyGlitch(card));
     });
   }
-  
+
   applyGlitch(card) {
     const glitchDuration = 300;
     const glitchIntensity = 2;
-    
+
     let frame = 0;
     const maxFrames = 5;
-    
+
     const glitchInterval = setInterval(() => {
       if (frame >= maxFrames) {
         clearInterval(glitchInterval);
         card.style.transform = '';
         return;
       }
-      
+
       const offsetX = (Math.random() - 0.5) * glitchIntensity;
       const offsetY = (Math.random() - 0.5) * glitchIntensity;
-      
+
       card.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
       frame++;
     }, glitchDuration / maxFrames);
@@ -275,20 +275,20 @@ class ActiveNav {
     this.navLinks = document.querySelectorAll('.nav-link');
     this.init();
   }
-  
+
   init() {
     window.addEventListener('scroll', () => this.updateActiveLink());
     this.updateActiveLink();
   }
-  
+
   updateActiveLink() {
     const scrollPosition = window.scrollY + 150;
-    
+
     this.sections.forEach(section => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
       const sectionId = section.getAttribute('id');
-      
+
       if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
         this.navLinks.forEach(link => {
           link.classList.remove('active');
@@ -311,7 +311,7 @@ class KeyboardNav {
     );
     this.init();
   }
-  
+
   init() {
     // Trap focus in modals (if added later)
     document.addEventListener('keydown', (e) => {
@@ -320,21 +320,21 @@ class KeyboardNav {
         this.closeAllModals();
       }
     });
-    
+
     // Add visible focus indicators
     this.focusableElements.forEach(element => {
       element.addEventListener('focus', () => {
         element.style.outline = '2px solid var(--color-primary)';
         element.style.outlineOffset = '2px';
       });
-      
+
       element.addEventListener('blur', () => {
         element.style.outline = '';
         element.style.outlineOffset = '';
       });
     });
   }
-  
+
   closeAllModals() {
     // Placeholder for future modal functionality
   }
@@ -347,7 +347,7 @@ class PerformanceOptimizer {
   constructor() {
     this.init();
   }
-  
+
   init() {
     // Disable particle system on mobile for performance
     if (window.innerWidth < 768) {
@@ -356,14 +356,14 @@ class PerformanceOptimizer {
         canvas.style.display = 'none';
       }
     }
-    
+
     // Lazy load images (if added)
     this.lazyLoadImages();
-    
+
     // Debounce scroll events
     this.debounceScrollEvents();
   }
-  
+
   lazyLoadImages() {
     const images = document.querySelectorAll('img[data-src]');
     const imageObserver = new IntersectionObserver((entries) => {
@@ -376,10 +376,10 @@ class PerformanceOptimizer {
         }
       });
     });
-    
+
     images.forEach(img => imageObserver.observe(img));
   }
-  
+
   debounceScrollEvents() {
     let scrollTimeout;
     window.addEventListener('scroll', () => {
@@ -398,7 +398,7 @@ class PerformanceOptimizer {
 document.addEventListener('DOMContentLoaded', () => {
   // Check for reduced motion preference
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  
+
   // Initialize particle system (skip on mobile or if reduced motion is preferred)
   if (window.innerWidth >= 768 && !prefersReducedMotion) {
     const canvas = document.getElementById('particles-canvas');
@@ -406,34 +406,34 @@ document.addEventListener('DOMContentLoaded', () => {
       new ParticleSystem(canvas);
     }
   }
-  
+
   // Initialize terminal typing effect
   const typingElement = document.getElementById('typing-effect');
   const outputElement = document.getElementById('terminal-output');
   if (typingElement && outputElement) {
     new TerminalTyping(typingElement, outputElement);
   }
-  
+
   // Initialize scroll reveal
   new ScrollReveal();
-  
+
   // Initialize smooth scroll
   new SmoothScroll();
-  
+
   // Initialize glitch effects (skip if reduced motion)
   if (!prefersReducedMotion) {
     new GlitchEffect();
   }
-  
+
   // Initialize active navigation
   new ActiveNav();
-  
+
   // Initialize keyboard navigation
   new KeyboardNav();
-  
+
   // Initialize performance optimizations
   new PerformanceOptimizer();
-  
+
   // Log initialization (remove in production)
   console.log('%c[Portfolio] Systems initialized successfully', 'color: #00FF41; font-weight: bold;');
   console.log('%c[Portfolio] Terminal Green palette loaded', 'color: #00FF41;');
