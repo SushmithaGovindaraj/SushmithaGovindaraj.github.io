@@ -78,7 +78,7 @@ class ParticleSystem {
       // Draw particle
       this.ctx.beginPath();
       this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-      this.ctx.fillStyle = 'rgba(255, 107, 107, 0.6)'; // Coral
+      this.ctx.fillStyle = 'rgba(0, 217, 255, 0.5)'; // Cyan
       this.ctx.fill();
 
       // Draw connections
@@ -91,8 +91,8 @@ class ParticleSystem {
           this.ctx.beginPath();
           this.ctx.moveTo(particle.x, particle.y);
           this.ctx.lineTo(otherParticle.x, otherParticle.y);
-          const opacity = (1 - distance / this.connectionDistance) * 0.3;
-          this.ctx.strokeStyle = `rgba(91, 159, 237, ${opacity})`; // Blue
+          const opacity = (1 - distance / this.connectionDistance) * 0.25;
+          this.ctx.strokeStyle = `rgba(0, 217, 255, ${opacity})`; // Cyan
           this.ctx.lineWidth = 0.5;
           this.ctx.stroke();
         }

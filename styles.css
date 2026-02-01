@@ -5,27 +5,25 @@
 
 /* === CSS Variables === */
 :root {
-  /* Deep Blue + Coral Palette (Professional & Modern) */
-  --color-primary: #FF6B6B;
-  /* Coral - CTAs, highlights */
-  --color-secondary: #4ECDC4;
-  /* Teal - Secondary accents */
-  --color-cta: #FF6B6B;
-  /* Coral - Primary buttons */
-  --color-background: #0F1419;
-  /* Deep Navy - Page background */
-  --color-surface: #1A1F2E;
-  /* Dark Blue - Cards, modals */
-  --color-text: #E8EDF3;
-  /* Off-white - Body text */
-  --color-text-muted: #A8B2D1;
-  /* Light Blue - Secondary text */
-  --color-border: #2A3244;
+  /* Monochrome + Cyan Accent (Professional & Futuristic) */
+  --color-primary: #00D9FF;
+  /* Electric Cyan - Single accent */
+  --color-secondary: #00A8CC;
+  /* Darker Cyan - Secondary accents */
+  --color-cta: #00D9FF;
+  /* Cyan - CTA buttons */
+  --color-background: #0B0D17;
+  /* Deep Space Gray - Page background */
+  --color-surface: #151820;
+  /* Charcoal - Cards, surfaces */
+  --color-text: #E5E7EB;
+  /* Cool White - Body text */
+  --color-text-muted: #9CA3AF;
+  /* Mid Gray - Secondary text */
+  --color-border: #2D3748;
   /* Slate - Borders */
-  --color-accent-blue: #5B9FED;
-  /* Sky Blue - Gradient accents */
-  --color-accent-gold: #FFD93D;
-  /* Gold - Special highlights */
+  --color-accent-dim: #1E3A5F;
+  /* Dim Blue - Subtle accents */
 
 
   /* Spacing System (8-point grid) */
@@ -52,13 +50,12 @@
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 30px rgba(255, 107, 107, 0.4);
-  --shadow-glow-blue: 0 0 30px rgba(91, 159, 237, 0.4);
-  --shadow-glow-teal: 0 0 30px rgba(78, 205, 196, 0.4);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 30px rgba(0, 217, 255, 0.3);
+  --shadow-glow-subtle: 0 0 20px rgba(0, 217, 255, 0.15);
 
   /* Animations */
   --transition-fast: 150ms ease;
@@ -332,7 +329,7 @@ main {
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 900;
   line-height: 1.1;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent-blue), var(--color-secondary));
+  background: linear-gradient(135deg, var(--color-primary), var(--color-text));
   background-size: 200% 200%;
   animation: gradientShift 3s ease infinite;
   -webkit-background-clip: text;
@@ -366,7 +363,7 @@ main {
   display: block;
   font-size: clamp(0.9rem, 2vw, 1.125rem);
   font-weight: 500;
-  color: var(--color-secondary);
+  color: var(--color-primary);
   font-family: var(--font-body);
   margin-top: var(--space-sm);
 }
@@ -377,32 +374,6 @@ main {
   margin-bottom: var(--space-2xl);
   max-width: 700px;
   line-height: 1.7;
-}
-
-.hero-stats {
-  display: flex;
-  gap: var(--space-2xl);
-  margin-bottom: var(--space-2xl);
-}
-
-.hero-stat {
-  text-align: center;
-}
-
-.hero-stat__value {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--color-primary);
-  font-family: var(--font-mono);
-  line-height: 1;
-  margin-bottom: var(--space-xs);
-}
-
-.hero-stat__label {
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .highlight {
@@ -589,8 +560,8 @@ main {
 }
 
 .skill-category:hover {
-  border-left-color: var(--color-secondary);
-  box-shadow: var(--shadow-glow-teal);
+  border-left-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
   transform: translateX(4px);
 }
 
@@ -650,7 +621,7 @@ main {
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+  background: var(--color-primary);
 }
 
 .timeline-item {
@@ -801,7 +772,7 @@ main {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent-blue));
+  background: var(--color-primary);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--transition-slow);
@@ -971,7 +942,7 @@ main {
 
 .contact-link:hover,
 .contact-link:focus {
-  color: var(--color-secondary);
+  color: var(--color-primary);
   text-decoration: underline;
 }
 
