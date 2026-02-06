@@ -8,7 +8,7 @@
 ## 🤖 About
 
 Advanced portfolio showcasing expertise in:
-- **Robotics & Autonomous Systems** (ROS/ROS2, SLAM, Sensor Fusion)
+- **Robotics & Autonomous Systems** (ROS/ROS2, SLAM, Gazebo, Sensor Fusion)
 - **AI & Machine Learning** (PyTorch, RAG, Computer Vision)
 - **Big Data Engineering** (PySpark, Databricks)
 - **Industrial Automation** (PCB Design, Embedded Systems)
