@@ -275,7 +275,7 @@ class TerminalTyping {
     this.commands = [
       '> initializing_portfolio...',
       '> loading_robotics_engineer.profile',
-      '> importing autonomous_systems',
+      '> architecting_intelligent_systems',
       '> importing deep_learning',
       '> importing sensor_fusion',
       '> systems_online ✓',
