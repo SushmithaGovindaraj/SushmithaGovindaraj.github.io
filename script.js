@@ -276,7 +276,7 @@ class TerminalTyping {
       '> initializing_portfolio...',
       '> loading_robotics_engineer.profile',
       '> architecting_intelligent_systems',
-      '> importing deep_learning',
+      '> integrating_robotic_autonomy',
       '> importing sensor_fusion',
       '> systems_online ✓',
       '> welcome_to_sushmitha_govindaraj_portfolio'
