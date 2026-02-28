@@ -339,6 +339,11 @@ main {
   line-height: 1.8;
 }
 
+.terminal-success {
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(192, 132, 252, 0.4);
+}
+
 /* Hero Content */
 .hero-terminal__content {
   text-align: left;
