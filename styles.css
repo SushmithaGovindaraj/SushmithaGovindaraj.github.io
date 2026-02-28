@@ -352,31 +352,75 @@ main {
   display: block;
   font-size: clamp(2.75rem, 7vw, 4.75rem);
   font-weight: 900;
-  line-height: 1;
+  line-height: 1.05;
   font-family: 'Space Grotesk', var(--font-heading);
-  letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #A855F7 0%, #D8B4FE 50%, #FFFFFF 100%);
-  background-size: 200% 200%;
-  animation: nameGradient 4s ease infinite;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-md);
+  text-transform: none;
+  position: relative;
+  /* Unified gradient across the entire name */
+  background: linear-gradient(100deg,
+      #FFFFFF 0%,
+      #FFFFFF 38%,
+      #E9D5FF 50%,
+      #C084FC 62%,
+      #A855F7 78%,
+      #D946EF 100%);
+  background-size: 250% 100%;
+  animation: nameShimmer 6s ease infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 80px rgba(168, 85, 247, 0.5);
-  margin-bottom: var(--space-md);
-  text-transform: none;
-  -webkit-text-stroke: 0.5px rgba(168, 85, 247, 0.3);
-  paint-order: stroke fill;
 }
 
-@keyframes nameGradient {
+/* "Sushmitha" span — inherits gradient, no override */
+.hero-title__primary .name-first {
+  display: inline;
+}
 
-  0%,
-  100% {
-    background-position: 0% 50%;
+/* "Govindaraj" span — inherits gradient, no override */
+.hero-title__primary .name-last {
+  display: inline;
+}
+
+@keyframes nameShimmer {
+  0% {
+    background-position: 0% center;
   }
 
   50% {
-    background-position: 100% 50%;
+    background-position: 100% center;
+  }
+
+  100% {
+    background-position: 0% center;
+  }
+}
+
+/* Purple glowing underline bar */
+.hero-title__primary::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #A855F7, #E879F9);
+  margin-top: 14px;
+  border-radius: 2px;
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.7), 0 0 30px rgba(168, 85, 247, 0.3);
+  animation: barPulse 3s ease-in-out infinite;
+}
+
+@keyframes barPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    width: 80px;
+  }
+
+  50% {
+    opacity: 0.7;
+    width: 110px;
   }
 }
 
