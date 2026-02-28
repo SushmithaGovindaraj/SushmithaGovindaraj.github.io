@@ -279,7 +279,9 @@ class TerminalTyping {
   addToOutput(command) {
     const line = document.createElement('div');
     line.className = 'terminal-line';
-    line.style.color = command.includes('✓') ? '#A855F7' : '#7D8590';
+    const isSuccess = command.includes('✓');
+    line.style.color = isSuccess ? '#C084FC' : '#7D8590';
+    if (isSuccess) line.classList.add('terminal-success');
     line.textContent = command;
     this.outputElement.appendChild(line);
     this.element.textContent = '';
