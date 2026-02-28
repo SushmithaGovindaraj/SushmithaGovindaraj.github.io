@@ -1673,6 +1673,19 @@ main {
     opacity: 1;
     transform: none;
   }
+
+  /* Lock name gradient to static purple position for reduced-motion users */
+  .hero-title__primary {
+    animation: none !important;
+    background-position: 60% center !important;
+  }
+
+  /* Lock underline bar to fixed width */
+  .hero-title__primary::after {
+    animation: none !important;
+    width: 80px !important;
+    opacity: 1 !important;
+  }
 }
 
 /* === Responsive Breakpoints === */
