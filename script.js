@@ -150,6 +150,17 @@ class ParticleNetwork {
         p.vy += (mdy / md) * pull;
       }
 
+      // Friction — gradually damp velocity back toward natural drift speed
+      p.vx *= 0.995;
+      p.vy *= 0.995;
+
+      // Speed floor — ensure particle never fully stops
+      const mspd = Math.hypot(p.vx, p.vy);
+      if (mspd < this.cfg.minSpeed && mspd > 0) {
+        p.vx = (p.vx / mspd) * this.cfg.minSpeed;
+        p.vy = (p.vy / mspd) * this.cfg.minSpeed;
+      }
+
       // Speed cap
       const spd = Math.hypot(p.vx, p.vy);
       if (spd > this.cfg.maxSpeed * 2) {
