@@ -1,269 +1,213 @@
 /**
- * Cybernetic Precision Portfolio
- * Interactive Features & Animations
+ * Portfolio - Interactive Features & Animations
  */
 
 // ============================================
-// 1. PARTICLE SYSTEM (Canvas Background)
-// ============================================
-// ============================================
-// 1. DOT GRID SYSTEM (New Background)
+// 1. CONSTELLATION NETWORK (Canvas Background)
 // ============================================
 
-// Helper: Hex to RGB
-function hexToRgb(hex) {
-  const m = hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
-  if (!m) return { r: 0, g: 0, b: 0 };
-  return {
-    r: parseInt(m[1], 16),
-    g: parseInt(m[2], 16),
-    b: parseInt(m[3], 16)
-  };
-}
-
-class DotGrid {
+class ParticleNetwork {
   constructor(canvas) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
-    this.wrapper = canvas.parentElement;
+    this.particles = [];
+    this.mouse = { x: -9999, y: -9999 };
 
-    // Configuration (from user request)
-    this.config = {
-      dotSize: 4,
-      gap: 15,
-      baseColor: '#271E37', // Dark Purple
-      activeColor: '#5227FF', // Bright Blue/Purple
-      proximity: 120,
-      activeProximity: 280, // Extended range for mouse influence
-      shockRadius: 250,
-      shockStrength: 5,
-      resistance: 750,
-      returnDuration: 1.5,
-      speedTrigger: 100,
-      maxSpeed: 5000
+    this.cfg = {
+      count: 110,
+      minSpeed: 0.15,
+      maxSpeed: 0.40,
+      connectDist: 140,      // px — max line distance
+      mouseRadius: 190,      // px — mouse attraction range
+      dotMinR: 1.2,
+      dotMaxR: 2.8,
+      lineWidth: 0.55,
+      dotColor: '#2a1550',      // dim resting star
+      lineRGB: '147, 51, 234' // purple line color
     };
-
-    this.dots = [];
-    this.pointer = {
-      x: 0,
-      y: 0,
-      vx: 0,
-      vy: 0,
-      speed: 0,
-      lastTime: 0,
-      lastX: 0,
-      lastY: 0
-    };
-
-    this.baseRgb = hexToRgb(this.config.baseColor);
-    this.activeRgb = hexToRgb(this.config.activeColor);
 
     this.init();
   }
 
   init() {
     this.resize();
-    this.buildGrid();
+    this.spawn();
 
-    // Event Listeners
     window.addEventListener('resize', () => {
       this.resize();
-      this.buildGrid();
+      this.spawn();
     });
 
-    // Throttled mouse move for Physics calculation
-    let lastMove = 0;
     window.addEventListener('mousemove', (e) => {
-      const now = performance.now();
-      if (now - lastMove < 20) return; // 50fps throttle
-      lastMove = now;
-      this.handleMouseMove(e);
+      this.mouse.x = e.clientX;
+      this.mouse.y = e.clientY;
     }, { passive: true });
 
-    // Click interaction
+    window.addEventListener('mouseleave', () => {
+      this.mouse.x = -9999;
+      this.mouse.y = -9999;
+    });
+
     window.addEventListener('click', (e) => this.handleClick(e));
 
-    // Start Animation Loop
     this.animate();
   }
 
   resize() {
-    // Use window size for background coverage
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
-
     const dpr = window.devicePixelRatio || 1;
-    this.canvas.width = this.width * dpr;
-    this.canvas.height = this.height * dpr;
-    this.canvas.style.width = `${this.width}px`;
-    this.canvas.style.height = `${this.height}px`;
-
+    this.W = window.innerWidth;
+    this.H = window.innerHeight;
+    this.canvas.width = this.W * dpr;
+    this.canvas.height = this.H * dpr;
+    this.canvas.style.width = `${this.W}px`;
+    this.canvas.style.height = `${this.H}px`;
     this.ctx.scale(dpr, dpr);
   }
 
-  buildGrid() {
-    const { dotSize, gap } = this.config;
-
-    const cols = Math.floor((this.width + gap) / (dotSize + gap));
-    const rows = Math.floor((this.height + gap) / (dotSize + gap));
-    const cell = dotSize + gap;
-
-    // Center the grid
-    const gridW = cell * cols - gap;
-    const gridH = cell * rows - gap;
-    const startX = (this.width - gridW) / 2 + dotSize / 2;
-    const startY = (this.height - gridH) / 2 + dotSize / 2;
-
-    this.dots = [];
-    for (let y = 0; y < rows; y++) {
-      for (let x = 0; x < cols; x++) {
-        this.dots.push({
-          cx: startX + x * cell,
-          cy: startY + y * cell,
-          xOffset: 0,
-          yOffset: 0,
-          _inertiaApplied: false
-        });
-      }
+  spawn() {
+    this.particles = [];
+    for (let i = 0; i < this.cfg.count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = this.cfg.minSpeed + Math.random() * (this.cfg.maxSpeed - this.cfg.minSpeed);
+      const r = this.cfg.dotMinR + Math.random() * (this.cfg.dotMaxR - this.cfg.dotMinR);
+      this.particles.push({
+        x: Math.random() * this.W,
+        y: Math.random() * this.H,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        r,
+        baseR: r,
+        pushX: 0,
+        pushY: 0
+      });
     }
-  }
-
-  handleMouseMove(e) {
-    const now = performance.now();
-    const dt = this.pointer.lastTime ? now - this.pointer.lastTime : 16;
-
-    const dx = e.clientX - this.pointer.lastX;
-    const dy = e.clientY - this.pointer.lastY;
-
-    let vx = (dx / dt) * 1000;
-    let vy = (dy / dt) * 1000;
-
-    let speed = Math.hypot(vx, vy);
-    if (speed > this.config.maxSpeed) {
-      const scale = this.config.maxSpeed / speed;
-      vx *= scale;
-      vy *= scale;
-      speed = this.config.maxSpeed;
-    }
-
-    this.pointer.lastTime = now;
-    this.pointer.lastX = e.clientX;
-    this.pointer.lastY = e.clientY;
-    this.pointer.vx = vx;
-    this.pointer.vy = vy;
-    this.pointer.speed = speed;
-    this.pointer.x = e.clientX;
-    this.pointer.y = e.clientY;
-
-    // Apply Inertia to dots nearby
-    this.dots.forEach(dot => {
-      const dist = Math.hypot(dot.cx - this.pointer.x, dot.cy - this.pointer.y);
-
-      if (speed > this.config.speedTrigger && dist < this.config.proximity && !dot._inertiaApplied) {
-        dot._inertiaApplied = true;
-
-        // Calculate push target (Simulating inertia throw)
-        const pushX = (dot.cx - this.pointer.x) * 0.2 + vx * 0.05;
-        const pushY = (dot.cy - this.pointer.y) * 0.2 + vy * 0.05;
-
-        // GSAP Animation replacing InertiaPlugin
-        gsap.killTweensOf(dot);
-        gsap.to(dot, {
-          xOffset: pushX,
-          yOffset: pushY,
-          duration: 0.4,
-          ease: "power2.out",
-          onComplete: () => {
-            gsap.to(dot, {
-              xOffset: 0,
-              yOffset: 0,
-              duration: this.config.returnDuration,
-              ease: "elastic.out(1, 0.5)"
-            });
-            dot._inertiaApplied = false;
-          }
-        });
-      }
-    });
   }
 
   handleClick(e) {
     const cx = e.clientX;
     const cy = e.clientY;
+    const repulse = 280;
 
-    this.dots.forEach(dot => {
-      const dist = Math.hypot(dot.cx - cx, dot.cy - cy);
+    this.particles.forEach(p => {
+      const dx = p.x - cx;
+      const dy = p.y - cy;
+      const dist = Math.hypot(dx, dy);
+      if (dist >= repulse || dist === 0) return;
 
-      if (dist < this.config.shockRadius && !dot._inertiaApplied) {
-        dot._inertiaApplied = true;
-        gsap.killTweensOf(dot);
+      const force = (1 - dist / repulse) * 5;
+      const nx = dx / dist;
+      const ny = dy / dist;
 
-        const falloff = Math.max(0, 1 - dist / this.config.shockRadius);
-        const pushX = (dot.cx - cx) * this.config.shockStrength * falloff;
-        const pushY = (dot.cy - cy) * this.config.shockStrength * falloff;
-
-        // Shockwave then return
-        gsap.to(dot, {
-          xOffset: pushX,
-          yOffset: pushY,
-          duration: 0.5,
-          ease: "power3.out",
-          onComplete: () => {
-            gsap.to(dot, {
-              xOffset: 0,
-              yOffset: 0,
-              duration: this.config.returnDuration,
-              ease: "elastic.out(1, 0.5)"
-            });
-            dot._inertiaApplied = false;
-          }
-        });
-      }
+      gsap.killTweensOf(p, 'pushX,pushY');
+      gsap.to(p, {
+        pushX: p.pushX + nx * force * 40,
+        pushY: p.pushY + ny * force * 40,
+        duration: 0.35,
+        ease: 'power2.out',
+        onComplete: () => {
+          gsap.to(p, {
+            pushX: 0,
+            pushY: 0,
+            duration: 1.6,
+            ease: 'elastic.out(1, 0.4)'
+          });
+        }
+      });
     });
   }
 
   animate() {
-    this.ctx.clearRect(0, 0, this.width, this.height);
+    const ctx = this.ctx;
+    ctx.clearRect(0, 0, this.W, this.H);
 
-    const proxSq = this.config.activeProximity * this.config.activeProximity;
-    const { dotSize, baseColor } = this.config;
-    const radius = dotSize / 2;
+    const { connectDist, mouseRadius, lineRGB, lineWidth } = this.cfg;
+    const connSq = connectDist * connectDist;
+    const mouseRSq = mouseRadius * mouseRadius;
 
-    this.dots.forEach(dot => {
-      const ox = dot.cx + dot.xOffset;
-      const oy = dot.cy + dot.yOffset;
+    // ---- Update positions ----
+    this.particles.forEach(p => {
+      // Mouse attraction
+      const mdx = this.mouse.x - p.x;
+      const mdy = this.mouse.y - p.y;
+      const mdsq = mdx * mdx + mdy * mdy;
 
-      // Interaction Color Calculation
-      let style = baseColor;
-
-      // Check distance to mouse for color
-      if (this.pointer.x !== 0 && this.pointer.y !== 0) {
-        const dx = dot.cx - this.pointer.x;
-        const dy = dot.cy - this.pointer.y;
-        const dsq = dx * dx + dy * dy;
-
-        if (dsq <= proxSq) {
-          const dist = Math.sqrt(dsq);
-          const t = 1 - dist / this.config.activeProximity;
-
-          // Smooth color interpolation
-          const r = Math.round(this.baseRgb.r + (this.activeRgb.r - this.baseRgb.r) * t);
-          const g = Math.round(this.baseRgb.g + (this.activeRgb.g - this.baseRgb.g) * t);
-          const b = Math.round(this.baseRgb.b + (this.activeRgb.b - this.baseRgb.b) * t);
-          style = `rgb(${r},${g},${b})`;
-        }
+      if (mdsq < mouseRSq && mdsq > 0) {
+        const md = Math.sqrt(mdsq);
+        const pull = (1 - md / mouseRadius) * 0.018;
+        p.vx += (mdx / md) * pull;
+        p.vy += (mdy / md) * pull;
       }
 
-      // Draw Dot
-      this.ctx.fillStyle = style;
-      this.ctx.beginPath();
-      this.ctx.arc(ox, oy, radius, 0, Math.PI * 2);
-      this.ctx.fill();
+      // Speed cap
+      const spd = Math.hypot(p.vx, p.vy);
+      if (spd > this.cfg.maxSpeed * 2) {
+        p.vx = (p.vx / spd) * this.cfg.maxSpeed * 2;
+        p.vy = (p.vy / spd) * this.cfg.maxSpeed * 2;
+      }
+
+      // Integrate
+      p.x += p.vx + p.pushX * 0.12;
+      p.y += p.vy + p.pushY * 0.12;
+
+      // Bounce
+      if (p.x < 0) { p.x = 0; p.vx = Math.abs(p.vx); }
+      if (p.x > this.W) { p.x = this.W; p.vx = -Math.abs(p.vx); }
+      if (p.y < 0) { p.y = 0; p.vy = Math.abs(p.vy); }
+      if (p.y > this.H) { p.y = this.H; p.vy = -Math.abs(p.vy); }
+    });
+
+    // ---- Draw lines ----
+    for (let i = 0; i < this.particles.length; i++) {
+      const a = this.particles[i];
+      for (let j = i + 1; j < this.particles.length; j++) {
+        const b = this.particles[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dsq = dx * dx + dy * dy;
+        if (dsq > connSq) continue;
+
+        const t = 1 - Math.sqrt(dsq) / connectDist;
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(${lineRGB}, ${(t * 0.4).toFixed(2)})`;
+        ctx.lineWidth = lineWidth * t;
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+    }
+
+    // ---- Draw particles ----
+    this.particles.forEach(p => {
+      const mdx = this.mouse.x - p.x;
+      const mdy = this.mouse.y - p.y;
+      const mdsq = mdx * mdx + mdy * mdy;
+
+      let color, drawR;
+
+      if (mdsq < mouseRSq) {
+        const t = 1 - Math.sqrt(mdsq) / mouseRadius;
+        const alpha = 0.3 + t * 0.7;
+        color = t > 0.5
+          ? `rgba(233, 213, 255, ${alpha.toFixed(2)})`   // near: lavender-white
+          : `rgba(147, 51, 234, ${alpha.toFixed(2)})`;   // mid: purple
+        drawR = p.baseR * (1 + t * 1.3);
+      } else {
+        color = this.cfg.dotColor;
+        drawR = p.baseR;
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, Math.max(drawR, 0.5), 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
     });
 
     requestAnimationFrame(() => this.animate());
   }
 }
+
+// Alias so existing init code still works
+const DotGrid = ParticleNetwork;
 
 // ============================================
 // 2. TERMINAL TYPING EFFECT
@@ -281,11 +225,9 @@ class TerminalTyping {
       '> systems_online ✓',
       '> welcome_to_sushmitha_govindaraj_portfolio'
     ];
-    this.currentCommand = 0;
     this.currentChar = 0;
     this.typingSpeed = 50;
     this.pauseDuration = 800;
-
     this.startTyping();
   }
 
@@ -303,7 +245,6 @@ class TerminalTyping {
       const interval = setInterval(() => {
         this.element.textContent = command.slice(0, this.currentChar + 1);
         this.currentChar++;
-
         if (this.currentChar >= command.length) {
           clearInterval(interval);
           resolve();
@@ -315,7 +256,7 @@ class TerminalTyping {
   addToOutput(command) {
     const line = document.createElement('div');
     line.className = 'terminal-line';
-    line.style.color = command.includes('✓') ? '#00FF41' : '#7D8590';
+    line.style.color = command.includes('✓') ? '#A855F7' : '#7D8590';
     line.textContent = command;
     this.outputElement.appendChild(line);
     this.element.textContent = '';
@@ -334,19 +275,13 @@ class ScrollReveal {
     this.elements = document.querySelectorAll('[data-reveal]');
     this.observer = new IntersectionObserver(
       entries => this.handleIntersection(entries),
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      }
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
-
     this.init();
   }
 
   init() {
-    this.elements.forEach(element => {
-      this.observer.observe(element);
-    });
+    this.elements.forEach(el => this.observer.observe(el));
   }
 
   handleIntersection(entries) {
@@ -374,16 +309,11 @@ class SmoothScroll {
         e.preventDefault();
         const targetId = link.getAttribute('href');
         const targetElement = document.querySelector(targetId);
-
         if (targetElement) {
-          const offset = 80; // Account for fixed nav
+          const offset = 80;
           const elementPosition = targetElement.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
         }
       });
     });
@@ -408,7 +338,6 @@ class GlitchEffect {
   applyGlitch(card) {
     const glitchDuration = 300;
     const glitchIntensity = 2;
-
     let frame = 0;
     const maxFrames = 5;
 
@@ -418,10 +347,8 @@ class GlitchEffect {
         card.style.transform = '';
         return;
       }
-
       const offsetX = (Math.random() - 0.5) * glitchIntensity;
       const offsetY = (Math.random() - 0.5) * glitchIntensity;
-
       card.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
       frame++;
     }, glitchDuration / maxFrames);
@@ -445,7 +372,6 @@ class ActiveNav {
 
   updateActiveLink() {
     const scrollPosition = window.scrollY + 150;
-
     this.sections.forEach(section => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
@@ -475,21 +401,15 @@ class KeyboardNav {
   }
 
   init() {
-    // Trap focus in modals (if added later)
     document.addEventListener('keydown', (e) => {
-      // Escape key handling
-      if (e.key === 'Escape') {
-        this.closeAllModals();
-      }
+      if (e.key === 'Escape') this.closeAllModals();
     });
 
-    // Add visible focus indicators
     this.focusableElements.forEach(element => {
       element.addEventListener('focus', () => {
         element.style.outline = '2px solid var(--color-primary)';
         element.style.outlineOffset = '2px';
       });
-
       element.addEventListener('blur', () => {
         element.style.outline = '';
         element.style.outlineOffset = '';
@@ -497,9 +417,7 @@ class KeyboardNav {
     });
   }
 
-  closeAllModals() {
-    // Placeholder for future modal functionality
-  }
+  closeAllModals() { }
 }
 
 // ============================================
@@ -511,24 +429,17 @@ class PerformanceOptimizer {
   }
 
   init() {
-    // Disable particle system on mobile for performance
     if (window.innerWidth < 768) {
       const canvas = document.getElementById('particles-canvas');
-      if (canvas) {
-        canvas.style.display = 'none';
-      }
+      if (canvas) canvas.style.display = 'none';
     }
-
-    // Lazy load images (if added)
     this.lazyLoadImages();
-
-    // Debounce scroll events
     this.debounceScrollEvents();
   }
 
   lazyLoadImages() {
     const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries) => {
+    const imageObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const img = entry.target;
@@ -538,7 +449,6 @@ class PerformanceOptimizer {
         }
       });
     });
-
     images.forEach(img => imageObserver.observe(img));
   }
 
@@ -546,10 +456,7 @@ class PerformanceOptimizer {
     let scrollTimeout;
     window.addEventListener('scroll', () => {
       clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        // Trigger scroll-dependent functions
-        console.log('Scroll settled');
-      }, 100);
+      scrollTimeout = setTimeout(() => { }, 100);
     }, { passive: true });
   }
 }
@@ -558,15 +465,12 @@ class PerformanceOptimizer {
 // 9. INITIALIZE ALL SYSTEMS
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Check for reduced motion preference
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Initialize particle system (skip on mobile or if reduced motion is preferred)
+  // Initialize constellation background (skip on mobile or reduced motion)
   if (window.innerWidth >= 768 && !prefersReducedMotion) {
     const canvas = document.getElementById('particles-canvas');
-    if (canvas) {
-      new DotGrid(canvas);
-    }
+    if (canvas) new ParticleNetwork(canvas);
   }
 
   // Initialize terminal typing effect
@@ -576,30 +480,16 @@ document.addEventListener('DOMContentLoaded', () => {
     new TerminalTyping(typingElement, outputElement);
   }
 
-  // Initialize scroll reveal
   new ScrollReveal();
-
-  // Initialize smooth scroll
   new SmoothScroll();
 
-  // Initialize glitch effects (skip if reduced motion)
-  if (!prefersReducedMotion) {
-    new GlitchEffect();
-  }
+  if (!prefersReducedMotion) new GlitchEffect();
 
-  // Initialize active navigation
   new ActiveNav();
-
-  // Initialize keyboard navigation
   new KeyboardNav();
-
-  // Initialize performance optimizations
   new PerformanceOptimizer();
 
-  // Log initialization (remove in production)
-  console.log('%c[Portfolio] Systems initialized successfully', 'color: #00FF41; font-weight: bold;');
-  console.log('%c[Portfolio] Terminal Green palette loaded', 'color: #00FF41;');
-  console.log('%c[Portfolio] DotGrid system:', window.innerWidth >= 768 ? 'Active' : 'Disabled (mobile)', 'color: #00D9FF;');
+  console.log('%c[Portfolio] Constellation system initialized', 'color: #A855F7; font-weight: bold;');
 });
 
 // ============================================
@@ -607,7 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
-    DotGrid,
+    ParticleNetwork,
     TerminalTyping,
     ScrollReveal,
     SmoothScroll,
