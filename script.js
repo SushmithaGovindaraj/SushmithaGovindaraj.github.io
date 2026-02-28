@@ -48,6 +48,18 @@ class ParticleNetwork {
       this.mouse.y = -9999;
     });
 
+    // Touch support — constellation reacts on mobile swipe
+    window.addEventListener('touchmove', (e) => {
+      const t = e.touches[0];
+      this.mouse.x = t.clientX;
+      this.mouse.y = t.clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      this.mouse.x = -9999;
+      this.mouse.y = -9999;
+    }, { passive: true });
+
     window.addEventListener('click', (e) => this.handleClick(e));
 
     this.animate();
