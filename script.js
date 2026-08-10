@@ -241,10 +241,10 @@ class TerminalTyping {
     this.outputElement = outputElement;
     this.commands = [
       '> initializing_portfolio...',
-      '> loading_robotics_engineer.profile',
-      '> architecting_intelligent_systems',
-      '> integrating_robotic_autonomy',
-      '> pioneering_industrial_innovation',
+      '> loading_ai_data_engineer.profile',
+      '> building_genai_and_rag_systems',
+      '> streaming_pipelines_databricks_pyspark',
+      '> grounded_in_robotics_and_autonomy',
       '> systems_online ✓',
       '> welcome_to_sushmitha_govindaraj_portfolio'
     ];
