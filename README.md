@@ -211,6 +211,6 @@ MIT License - feel free to use this portfolio as inspiration for your own!
 ---
 
 <p align="center">
-  <strong>Built with passion for robotics & AI</strong><br>
+  <strong>Built with passion for AI & data engineering</strong><br>
   <code>$ © 2026 Sushmitha Govindaraj. All rights reserved.</code>
 </p>
